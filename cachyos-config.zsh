@@ -49,10 +49,13 @@ plugins=(
   zsh-autocomplete
   zsh-autosuggestions 
   zsh-syntax-highlighting
-  # zsh-history-substring-search
+  zsh-history-substring-search
 )
 
-zstyle ':autocomplete:*' delay 0.1 
+zstyle ':autocomplete:*' min-input 2
+zstyle ':autocomplete:*' delay 0.1
+# zstyle ':autocomplete:*' widget-style menu-select
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,8 +95,6 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #alias open="xdg-open"
 alias make="make -j`nproc`"
 alias ninja="ninja -j`nproc`"
-alias n="ninja"
-alias c="clear"
 alias rmpkg="sudo pacman -Rsn"
 alias cleanch="sudo pacman -Scc"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
@@ -116,11 +117,11 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Fish-like syntax highlighting and autosuggestions
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use history substring search
-# source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-histo.ry-substring-search.zsh
+source $ZSH_CUSTOM/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # pkgfile "command not found" handler
 source /usr/share/doc/pkgfile/command-not-found.zsh

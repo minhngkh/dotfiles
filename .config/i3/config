@@ -36,6 +36,8 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] border none, move position 70 ppt 81 ppt
 no_focus [class="plasmashell" window_type="notification"]
 
+for_window [class="spectacle"] floating enable
+
 
 
 
@@ -192,6 +194,10 @@ for_window [class="Spotify"] move scratchpad, floating enable, resize set 1600 9
 bindsym $mod+0 [class="Spotify"] scratchpad show
 
 bindsym $mod+b move position center
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

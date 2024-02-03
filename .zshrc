@@ -1,11 +1,30 @@
 source /home/minhngkh/cachyos-config.zsh
 
-alias "?"="gh copilot explain"
-alias "??"="gh copilot suggest"
+alias "?"="gh copilot suggest"
+alias "??"="gh copilot explain"
+alias "git?"="gh copilot suggest -t git"
 
-function c {
-	/opt/visual-studio-code/code "$@" &> /dev/null
+alias "cat"="bat"
+
+alias "ls"="lsd"
+alias "ll"="lsd -l"
+alias "la"="lsd -a"
+alias "lla"="lsd -la"
+
+function lt {
+   if [[ "$1" =~ ^[0-9]+$ ]]
+   then
+      lsd --tree --depth=$1 "${@:2}"
+   else
+      lsd --tree "$@"
+   fi
 }
+compdef lt=lsd
+
+function mc {
+	mkdir "$@" && cd $_ 
+}
+compdef mc=mkdir
 
 export CHEAT_USE_FZF=true
 

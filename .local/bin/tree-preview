@@ -1,0 +1,6 @@
+#!/bin/bash
+
+output=$(tree -C -L 2 $1 2> /dev/null)
+
+echo "$output" | tail -n 1
+echo -e "\n$output" | head -n -1 | head -n $2

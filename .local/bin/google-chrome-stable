@@ -1,0 +1,14 @@
+#!/bin/bash
+
+exec /usr/bin/google-chrome-stable \
+	--password-store=gnome-libsecret \
+	--ozone-platform-hint=wayland \
+	--ignore-gpu-blocklist \
+	--disable-features=UseSkiaRenderer \
+	--enable-features=VaapiVideoDecodeLinuxGL \
+	--gtk-version=4 \
+	"$@"
+
+
+# --enable-zero-copy \
+# --enable-features=VaapiVideoDecodeLinuxGL \	--enable-features=VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE \

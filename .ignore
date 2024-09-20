@@ -1,0 +1,10 @@
+.*/
+go/pkg/
+
+!.config/
+!.ssh/
+
+!.local/
+.local/*
+!.local/bin/
+!.local/share/

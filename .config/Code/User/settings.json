@@ -1,0 +1,120 @@
+{
+  "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+  "workbench.iconTheme": "icons",
+  "workbench.sideBar.location": "right",
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#f1f1f109",
+    "panel.border": "#f1f1f1f1",
+    "editorGroup.border": "#f1f1f1f1",
+    "sideBar.border": "#f1f1f1f1",
+    "activityBar.border": "#f1f1f1f1",
+    "titleBar.border": "#f1f1f1f1",
+    "statusBar.border": "#f1f1f1f1",
+    "editorGroupHeader.tabsBorder": "#f1f1f1f1",
+    "tab.border": "#f1f1f1f1",
+    "tab.activeBorder": "#1e1e1e",
+    "tab.hoverBorder": "default",
+    "tab.inactiveBackground": "#282828",
+    "tab.unfocusedHoverBorder": "#f1f1f1f1",
+    "editor.background": "#1e1e1e",
+    "editorGutter.background": "#1e1e1e",
+    "tab.activeBackground": "#1e1e1e",
+    "terminal.background": "#1e1e1e",
+    "toolbar.activeBackground": "#1e1e1e",
+    "statusBar.background": "#1e1e1e",
+    "titleBar.activeBackground": "#1e1e1e",
+    "panel.background": "#1e1e1e",
+    "editorGroupHeader.tabsBackground": "#1e1e1e",
+    "sideBar.background": "#1e1e1e",
+    "sideBarSectionHeader.background": "#1e1e1e",
+    "activityBar.background": "#1e1e1e"
+  },
+  "window.titleBarStyle": "custom",
+  "window.customTitleBarVisibility": "auto",
+  "editor.fontFamily": "'JetGraph Nerd Font', 'monospace', monospace",
+  "editor.fontSize": 16,
+  "editor.fontWeight": "600",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontWeight": "600",
+  "terminal.integrated.lineHeight": 1.0,
+  "editor.tabSize": 2,
+  "editor.linkedEditing": true,
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.rulers": [90],
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  // Golang
+  "gopls": {
+    "ui.semanticTokens": true
+  },
+  "go.inlayHints.compositeLiteralFields": true,
+  "go.inlayHints.compositeLiteralTypes": true,
+  "go.inlayHints.functionTypeParameters": true,
+  "go.inlayHints.parameterNames": true,
+  "go.inlayHints.rangeVariableTypes": true,
+  "go.inlayHints.constantValues": true,
+  "indentRainbow.includedLanguages": ["html", "handlebars"],
+  "cSpell.userWords": [
+    "awslabs",
+    "biomejs",
+    "clsx",
+    "godotenv",
+    "gonic",
+    "gopls",
+    "gorm",
+    "hono",
+    "hookform",
+    "httpadapter",
+    "Ionicons",
+    "joho",
+    "labstack",
+    "libphonenumber",
+    "libsql",
+    "Lucide",
+    "Monokai",
+    "mrjob",
+    "Msgf",
+    "Nativewind",
+    "Pressable",
+    "spacy",
+    "tailwindcss",
+    "tanstack",
+    "Treebank",
+    "treesticky",
+    "zerolog",
+    "zustand"
+  ],
+  "color-highlight.markerType": "dot-before",
+  "hidefiles.version": "2.0.0",
+  // "javascript.suggest.paths": false,
+  // "typescript.suggest.paths": false,
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true
+  },
+  "editor.renderWhitespace": "selection",
+  "[json][jsonc][css][typescriptreact][typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // tailwind
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "Makefile": "makefile"
+  },
+  // "editor.quickSuggestions": {
+  //   "strings": "on"
+  // },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  }
+}

@@ -1,0 +1,108 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+enter",
+    "command": "-github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "cursorMove",
+    "args": {
+      "to": "up",
+      "by": "line",
+      "value": 5
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "cursorMove",
+    "args": {
+      "to": "down",
+      "by": "line",
+      "value": 5
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "-workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "editor.debug.action.showDebugHover",
+    "when": "editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "workbench.action.terminal.focusHover",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalIsOpen || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalIsOpen && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "list.showHover",
+    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
+  },
+  {
+    "key": "alt+left",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.focusRightGroup"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.showAllEditors"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "-editor.action.toggleTabFocusMode"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "workbench.action.toggleCenteredLayout"
+  },
+  {
+    "key": "ctrl+k ctrl+c",
+    "command": "-editor.action.addCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+k ctrl+c",
+    "command": "-notebook.cell.collapseCellInput",
+    "when": "notebookCellListFocused && !inputFocus && !notebookCellInputIsCollapsed"
+  },
+  {
+    "key": "ctrl+k ctrl+c",
+    "command": "-notebook.cell.expandCellInput",
+    "when": "notebookCellInputIsCollapsed && notebookCellListFocused"
+  },
+  {
+    "key": "ctrl+k ctrl+c",
+    "command": "workbench.panel.chat.view.copilot.focus"
+  },
+  {
+    "key": "ctrl+k ctrl+t",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+k ctrl+t",
+    "command": "-workbench.action.selectTheme"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit"
+  }
+]

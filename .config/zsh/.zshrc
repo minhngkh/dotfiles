@@ -28,6 +28,12 @@ source ${zsh_plugins}.zsh
 # Setup fzf shell integration
 source $HOME/.cache/fzf-shell-intergration
 
+# Setup fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# Setup zoxide
+eval "$(zoxide init zsh)"
+
 alias lg="lazygit"
 # alias docker="sudo docker"
 # alias kubectl="sudo kubectl"
@@ -57,15 +63,37 @@ mc() {
     mkdir -p "$1" && cd "$1"
 }
 
+aws-ctx() {
+  export AWS_PROFILE="$(aws configure list-profiles | fzf)"
+  echo "Switched to profile ""$AWS_PROFILE""."
+}
+
+y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 precmd() {
     precmd() {
         echo
     }
 }
 
+zle -N y
+zle -N __zoxide_zi
+
 bindkey "^[OA" history-substring-search-up
 bindkey "^[OB" history-substring-search-down
 bindkey "^Z" undo
+bindkey "^[y" y
+bindkey "^[z" __zoxide_zi
+
+# default aws profile
+export AWS_PROFILE="minhngkh"
 
 # pfetch config
 export PF_INFO="ascii title os kernel uptime pkgs shell wm"
@@ -86,14 +114,16 @@ c_dirs=(
     "/opt"
     "/usr/local/share"
     "/usr/share/applications"
-    "/tmp"
+    # "/tmp"
 )
-export FZF_CTRL_T_COMMAND="fd -t f -t d -H -E node_modules . $t_dirs | sed \"s|^$HOME|~|\""
+export FZF_CTRL_T_COMMAND="fd -d 4 -t f -t d -H -E node_modules . $t_dirs | sed \"s|^$HOME|~|\""
+# export FZF_CTRL_T_COMMAND="fd -d 4 -t f -t d -H -E node_modules"
 # export FZF_CTRL_T_OPTS="
-#   --walker-root='~'"
+# --walker-root='~'"
 export FZF_ALT_C_COMMAND="fd -d 4 -t d -H -E node_modules . $c_dirs | sed \"s|^$HOME|~|\""
 export FZF_ALT_C_OPTS="
     --walker-root ~
     --preview 'lsd {} -1 -A --group-directories-first --icon=always --color=always'"
 
-pfetch
+fastfetch
+echo

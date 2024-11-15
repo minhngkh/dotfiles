@@ -1,5 +1,4 @@
-"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
-version = 2
+version = 3
 final_space = true
 
 [[blocks]]
@@ -7,83 +6,108 @@ final_space = true
   alignment = 'left'
 
   [[blocks.segments]]
+    template = '# '
+    foreground = 'lightBlue'
     type = 'text'
     style = 'plain'
-    foreground = 'lightBlue'
-    template = '# '
-
-  [[blocks.segments]]
-    type = 'root'
-    style = 'plain'
-    foreground = 'red'
-    template = ' % '
-
-  [[blocks.segments]]
-    type = 'session'
-    style = 'plain'
-    template = '<cyan>{{ .UserName }}</><darkGray>@</><green>{{ .HostName }}</> '
-
-  [[blocks.segments]]
-    type = 'path'
-    style = 'plain'
-    foreground = 'lightYellow'
-    template = '<darkGray>in </>{{ .Path }} '
 
     [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' % '
+    foreground = 'red'
+    type = 'root'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<cyan>{{ .UserName }}</><darkGray>@</><green>{{ .HostName }}</> '
+    type = 'session'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<darkGray>in </>{{ .Path }} '
+    foreground = 'lightYellow'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
       style = 'powerlevel'
 
   [[blocks.segments]]
+    template = '<darkGray>on</> <white>{{ .UpstreamIcon }}: </><cyan>{{ .HEAD }}</>{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
     type = 'git'
     style = 'plain'
-    # template = '<darkGray>on</> <white>git:</><cyan>{{ .HEAD }}</>{{ if .Working.Changed }}<red> x</>{{ end }} '
-    # template = '<darkGray>on</> <white>git:</><cyan>{{ .HEAD }} {{ .BranchStatus }}'
-    template = '<darkGray>on</> <white>{{ .UpstreamIcon }}: </><cyan>{{ .HEAD }}</>{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
-	
+
     [blocks.segments.properties]
+      cache_duration = 'none'
       fetch_status = true
       fetch_upstream_icon = true
 
   [[blocks.segments]]
+    template = 'C:{{ if gt .Code 0 }}{{ .Code }}{{ end }} '
+    foreground = 'red'
     type = 'status'
     style = 'plain'
-    foreground = 'red'
-    template = 'C:{{ if gt .Code 0 }}{{ .Code }}{{ end }} '
-    
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
   [[blocks.segments]]
-    type = "executiontime"
-    style = "plain"
-    template = "<darkGray>took</> <white>{{ .FormattedMs }}</>"
-    
+    template = '<darkGray>took</> <white>{{ .FormattedMs }}</>'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
 [[blocks]]
   type = 'prompt'
   alignment = 'right'
   overflow = 'hidden'
 
   [[blocks.segments]]
+    template = '({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }})'
+    foreground = 'white'
     type = 'python'
     style = 'plain'
-    foreground = 'white'
-    template = '({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }})'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       fetch_version = false
-    
+
   [[blocks.segments]]
+    template = '<white>(</>{{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }}<white>)</>'
+    foreground = '#f89820'
     type = 'java'
     style = 'plain'
-    foreground = '#f89820'
-    template = '<white>(</>{{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }}<white>)</>'
-  
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
   [[blocks.segments]]
+    template = '<white>(</>{{ if glob "bun.lockb" }}<#faefde>🥟 {{ .Full }}</>{{ else }}<#6cc24a> {{ .Full }}</>{{ end }}<white>)</>'
     type = 'node'
     style = 'plain'
-    template = '<white>(</>{{ if glob "bun.lockb" }}<#faefde>🥟 {{ .Full }}</>{{ else }}<#6cc24a> {{ .Full }}</>{{ end }}<white>)</>'
-    
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
   [[blocks.segments]]
+    template = '<white>(</>{{ if .Unsupported }}{{ .Unsupported }}{{ else }} {{ .Full }}{{ end }}<white>)</>'
+    foreground = '#4122aa'
     type = 'dotnet'
     style = 'plain'
-    foreground = '#4122aa'
-    template = '<white>(</>{{ if .Unsupported }}{{ .Unsupported }}{{ else }} {{ .Full }}{{ end }}<white>)</>'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
 [[blocks]]
   type = 'prompt'
@@ -91,7 +115,10 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
+    template = '$'
+    foreground = 'lightCyan'
     type = 'text'
     style = 'plain'
-    foreground = 'lightCyan'
-    template = '$'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'

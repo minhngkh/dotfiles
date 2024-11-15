@@ -2,5 +2,5 @@
 Type=Application
 Version=1.0
 Name=Test Entry
-Exec=xwininfo
-Terminal=True
+Exec=notify-send 'run from local entry'
+Terminal=false

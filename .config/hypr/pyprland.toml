@@ -1,43 +1,50 @@
 [pyprland]
-plugins = [
- "monitors",
- "scratchpads",
- "shortcuts_menu",
- "toggle_special"
-]
+plugins = ["shortcuts_menu", "toggle_special"]
 
 # using variables for demonstration purposes (not needed)
 [pyprland.variables]
-term_classed = "kitty --class"
+float_term = "kitty --class float-win --"
 
-[scratchpads.term]
-animation = ""
-command = "kitty --class kitty-dropterm"
-class = "kitty-dropterm"
-size = "60% 70%"
-max_size = "1920px 100%"
-position = "20% 15%"
-offset = "130%"
-hide_delay = 0
-# smart_focus = false
+# [scratchpads.term]
+# animation = ""
+# command = "kitty --class kitty-scratchpad"
+# class = "kitty-scratchpad"
+# size = "60% 70%"
+# max_size = "1920px 100%"
+# position = "20% 15%"
+# offset = "130%"
+# hide_delay = 0
 
-[monitors]
-startup_relayout = true
-hotplug_command = "wlrlui -m; systemctl --user restart ags"
-# unknown = "wlrlui; systemctl --user restart ags"
+# [monitors]
+# hotplug_command = "./scripts/setup-monitors.sh; hyprctl reload; pgrep ags || (ags -q && ags); hyprctl notify 5 3000 0 'Configured monitors'"
+# unknown = "./scripts/setup-monitors.sh; hyprctl reload; pgrep ags || (ags -q && ags); hyprctl notify 5 3000 0 'Configured monitors'"
 
-[monitors.placement]
-"LG Electronics LG FHD".leftOf = "eDP-1"
+# [monitors.placement]
+# "LG Electronics LG FHD".leftOf = "eDP-1"
+
+
+[shortcuts_menu]
+engine = "tofi"
+parameters = ""
 
 [shortcuts_menu.entries]
+# "hyprprop" = "kitty -- sh -c 'hyprprop; read'"
+"hyprprop" = "[float_term] sh -c 'hyprprop; read'"
+"bpytop" = "[float_term] bpytop"
+"xwininfo" = "[float_term] sh -c 'xwininfo; read'"
+"Edit configs" = "code ~/personal/config.code-workspace"
+
 "Hyprland socket" = 'kitty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
 "Hyprland logs" = 'kitty tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log'
 
 "Color picker" = [
-    {name="format", options=["hex", "rgb", "hsv", "hsl", "cmyk"]},
-    "sleep 0.2; hyprpicker --format [format] | wl-copy" # sleep to let the menu close before the picker opens
+    { name = "format", options = [
+        "hex",
+        "rgb",
+        "hsv",
+        "hsl",
+        "cmyk",
+    ] },
+    "sleep 0.2; hyprpicker --format [format] | wl-copy", # sleep to let the menu close before the picker opens
 ]
 
-"hyprprop" = "kitty -- sh -c 'hyprprop; read'"
-"bpytop" = "kitty -- bpytop"
-"xwininfo" = "kitty -- sh -c 'xwininfo; read'"

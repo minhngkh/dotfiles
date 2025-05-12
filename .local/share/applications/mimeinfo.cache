@@ -1,5 +1,18 @@
 [MIME Cache]
-application/x-code-workspace=code.custom.desktop;
-x-scheme-handler/headlamp=appimagekit_4e837d3ebfac18139d285343b5c2b317-Headlamp.desktop;
-x-scheme-handler/pie=appimagekit_56e2fd4d2577edc172ad09df5249c1a2-HTTPie.desktop;
-x-scheme-handler/spotify=com.spotify.Client.custom.desktop;
+application/pdf=chromium-browser.desktop;
+application/rdf+xml=chromium-browser.desktop;
+application/rss+xml=chromium-browser.desktop;
+application/x-code-workspace=code.desktop;
+application/xhtml+xml=chromium-browser.desktop;
+application/xhtml_xml=chromium-browser.desktop;
+application/xml=chromium-browser.desktop;
+image/gif=chromium-browser.desktop;
+image/jpeg=chromium-browser.desktop;
+image/png=chromium-browser.desktop;
+image/webp=chromium-browser.desktop;
+text/html=chromium-browser.desktop;
+text/xml=chromium-browser.desktop;
+x-scheme-handler/http=chromium-browser.desktop;
+x-scheme-handler/https=chromium-browser.desktop;
+x-scheme-handler/pie=appimagekit_8eb8b6212562e4a6ad12ad0336b08ecf-HTTPie.desktop;
+x-scheme-handler/spotify=com.spotify.Client.desktop;

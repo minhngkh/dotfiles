@@ -1,0 +1,14 @@
+[manager]
+prepend_keymap = [
+	{ on = "<C-Up>", run = "arrow -3", desc = "Move cursor up 3 units" },
+	{ on = "<C-Down>", run = "arrow +3", desc = "Move cursor down 3 units" },
+	{ on = "o", run = "shell 'code -r $@'", desc = "Open the selected file(s) in code" },
+	{ on = "<C-n>", run = 'shell -- dragon -x -i -T "$1"' },
+	{ on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"' },
+	{ on = "z", run = 'shell --block -- ya emit cd "$(tv dirs)"'},
+]
+
+[input]
+prepend_keymap = [
+  	{ on = "<Esc>", run  = "close", desc = "Cancel input" },
+]

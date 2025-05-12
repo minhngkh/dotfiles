@@ -148,7 +148,7 @@ ohmyzsh/ohmyzsh path:plugins/copybuffer
 ohmyzsh/ohmyzsh path:plugins/copyfile
 ohmyzsh/ohmyzsh path:plugins/copypath
 ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/magic-enter
+# ohmyzsh/ohmyzsh path:plugins/magic-enter
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 
 
@@ -226,6 +226,7 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 # .zsh_plugins.txt file.
 #
 ###
+# jscutlery/nx-completion
 
 # These popular core plugins should be loaded at the end
 zsh-users/zsh-autosuggestions

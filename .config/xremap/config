@@ -1,0 +1,8 @@
+modmap:
+  - name: laptop
+    remap:
+      capslock: leftshift
+      leftshift: leftctrl
+      leftctrl: capslock
+    device:
+      only: 'AT Translated Set 2 keyboard'

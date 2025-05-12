@@ -104,5 +104,25 @@
   {
     "key": "ctrl+q",
     "command": "-workbench.action.quit"
+  },
+  {
+    "key": "alt+t", // whatever keybinding you want
+    "command": "toggle",
+    "when": "editorTextFocus",
+    "args": {
+      "id": "problems",
+      "value": [
+        {
+          "problems.visibility": false
+        },
+        {
+          "problems.visibility": true
+        }
+      ]
+    }
+  },
+  {
+    "key": "alt+b",
+    "command": "workbench.action.toggleAuxiliaryBar"
   }
 ]

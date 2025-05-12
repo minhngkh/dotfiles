@@ -1,15 +1,18 @@
+# ssh -> gcr
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+
 # fcitx5
 export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE="fcitx"
 export QT_IM_MODULES="wayland;fcitx;ibus"
-export GTK_IM_MODULE=
+# export GTK_IM_MODULE=
 
-# # qt
+# qt
 export QT_QPA_PLATFORM="wayland"
 export QT_QPA_PLATFORMTHEME="qt6ct"
 
 # java
-export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-21.0.4.0.7-2.fc40.x86_64/"
+# export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-21.0.4.0.7-2.fc40.x86_64/"
 
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
@@ -18,7 +21,9 @@ export PATH="$HOME/.local/bin:$PATH"
 source $HOME/.cargo/env
 
 # golang
-export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+export GOROOT="$HOME/.g/go"
+export GOBIN="$HOME/.g/bin"
+export PATH="$(go env GOBIN):$(go env GOPATH)/bin:$PATH"
 
 # fly.io cli
 export FLYCTL_INSTALL="$HOME/.fly"
@@ -45,3 +50,6 @@ export PATH="$PATH:$HOME/.turso"
 
 # Spicetify
 export PATH="$PATH:$HOME/.spicetify"
+
+# dotnet
+export PATH="$PATH:$HOME/.dotnet"

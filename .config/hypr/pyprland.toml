@@ -4,6 +4,7 @@ plugins = ["shortcuts_menu", "toggle_special"]
 # using variables for demonstration purposes (not needed)
 [pyprland.variables]
 float_term = "kitty --class float-win --"
+float_term_c = "kitty --class float-win"
 
 # [scratchpads.term]
 # animation = ""
@@ -29,10 +30,12 @@ parameters = ""
 
 [shortcuts_menu.entries]
 # "hyprprop" = "kitty -- sh -c 'hyprprop; read'"
-"hyprprop" = "[float_term] sh -c 'hyprprop; read'"
-"bpytop" = "[float_term] bpytop"
+"hyprprop" = "[float_term_c] --title hyprprop -- sh -c 'hyprprop; read -rsn1'"
+"bpytop" = "[float_term_c] --title bpytop bpytop"
 "xwininfo" = "[float_term] sh -c 'xwininfo; read'"
-"Edit configs" = "code ~/personal/config.code-workspace"
+"View keybinds" = "[float_term] sh -c 'micro $HYPR_CONFIG/hyprland/keybinds.conf'"
+"View commands" = "[float_term] sh -c 'micro $HOME/commands.txt'"
+"View configs" = "code ~/personal/config.code-workspace"
 
 "Hyprland socket" = 'kitty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
 "Hyprland logs" = 'kitty tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log'

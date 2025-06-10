@@ -1,0 +1,27 @@
+- anyruns
+- chatterino2
+- gBar
+- nwg-displays
+- nwg-look
+- https://github.com/sourcegit-scm/sourcegit
+- https://yaak.app/download
+- https://github.com/TheAssassin/AppImageLauncher/releases/
+- https://github.com/httpie/desktop/releases/
+
+-----
+
+- superfile
+- pypr (~/hypr-venv/)
+- bun upgrade
+- rustup update
+- fnm (reinstall: https://github.com/Schniz/fnm)
+- spicetify update
+- hyprpm update
+
+
+-----
+
+- bun update -g --dry-run
+- cargo install-update -a
+  + cargo install-update -l # list not install
+- go

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+dir=$HOME/.cache/zsh/completions
+mkdir -p $dir
+
+kind completion zsh > $dir/_kind
+kubectl completion zsh > $dir/_kubectl
+helm completion zsh > $dir/_helm
+k9s completion zsh > $dir/_k9s
+rustup completions zsh > $dir/_rustup
+rustup completions zsh cargo > $dir/_cargo
+
+# fix fzf comp in fedora installation
+cp /usr/share/zsh/site-functions/fzf $dir/_fzf
+
+# soft link available completions
+rm $dir/_bun
+ln -s $BUN_INSTALL/_bun $dir/_bun
+rm $dir/_yadm
+ln -s /usr/share/doc/yadm/completion/zsh/_yadm $dir/_yadm
+
+# fetch completions online
+curl -s -o $dir/_cheat https://raw.githubusercontent.com/cheat/cheat/refs/heads/master/scripts/cheat.zsh
+
+# manual install
+echo "Get the completion for lsd from the release page:"
+echo "https://github.com/lsd-rs/lsd/releases"
+echo "and save it to $dir/"

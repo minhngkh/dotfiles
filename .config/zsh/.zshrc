@@ -50,7 +50,7 @@ alias lla="lsd -la --group-directories-first"
 alias fzfa="fzf --ansi"
 alias zj="zellij-sessions"
 
-alias -g -- --help='--help 2>&1 | bat --language=help -p'
+# alias -g -- --help='--help 2>&1 | bat --language=help -p'
 
 lt() {
    if [[ "$1" =~ ^[0-9]+$ ]]

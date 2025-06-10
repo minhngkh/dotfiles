@@ -1,0 +1,25 @@
+# update rust
+rustup update
+
+# update every installed crates
+cargo install-update -a
+cargo install-update -l # list not install
+
+# update bun
+bun upgrade
+bun update -g --list
+
+# completion
+$cmd completions zsh > ~/.cache/zsh/completions/_$cmd
+
+# fnm
+fnm use 23
+
+# discord + vencord
+# spotify + spicetify
+
+hyprprop
+
+flatpak update
+
+hyprpm update

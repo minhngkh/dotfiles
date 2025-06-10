@@ -1,0 +1,33 @@
+{
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3-5-sonnet"
+    },
+    "version": "2"
+  },
+  "base_keymap": "VSCode",
+  "theme": "monokai (Filter Spectrum)",
+  // "ui_font_size": 16,
+  // "buffer_font_size": 14.6,
+  // "tab_size": 2,
+  // "buffer_font_family": "JetGraph Nerd Font",
+  // "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "Source Code Pro",
+  // "buffer_font_fallbacks": ["JetBrainsMono Nerd Font"],
+  // "buffer_font_weight": 500,
+  // subpixel not recognized in zed
+
+  "format_on_save": "off",
+  "experimental.theme_overrides": {
+    "editor.background": "#1e1e1e",
+    "editor.gutter.background": "#1e1e1e",
+    "tab_bar.background": "#1e1e1e",
+    "terminal.background": "#1e1e1e",
+    "toolbar.background": "#1e1e1e",
+    "status_bar.background": "#1e1e1e",
+    "title_bar.background": "#1e1e1e",
+    "panel.background": "#1e1e1e",
+    "border": "#f1f1f1f1"
+  }
+}

@@ -106,7 +106,7 @@
     "command": "-workbench.action.quit"
   },
   {
-    "key": "alt+t", // whatever keybinding you want
+    "key": "alt+e", // whatever keybinding you want
     "command": "toggle",
     "when": "editorTextFocus",
     "args": {
@@ -124,5 +124,18 @@
   {
     "key": "alt+b",
     "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "alt-t",
+    "command": "prettify-ts.toggle"
+  },
+  {
+    "key": "alt-r",
+    "command": "typescript.removeUnusedImports"
+  },
+  {
+    "key": "alt-o",
+    "command": "_workbench.open",
+    "args": "/home/minhngkh/school/grading-system/repos/ws.code-workspace"
   }
 ]

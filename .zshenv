@@ -6,4 +6,5 @@ export ZDOTDIR="$HOME/.config/zsh"
 
 export TT=1
 
-
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet/tools"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+fzf --zsh | sed \
+    -e 's/${(q)item}/${${(q)item}\/#\\\\~\/~}/' \
+    -e 's/builtin cd -- ${(q)dir:a}/cd -- ${${(q)dir}\/#\\\\~\/~}/' \
+    > $HOME/.cache/fzf-shell-intergration

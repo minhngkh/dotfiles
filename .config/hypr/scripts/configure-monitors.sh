@@ -6,8 +6,8 @@ echo -n "$(date): Monitor configured" >> monitor.log
 
 if [[ $num_monitors -le 1 ]]; then
   ln -sf $HYPR_CONFIG/monitors/default.conf $HYPR_CONFIG/monitors.conf
-  echo " - default"
+  echo " - default" >> monitor.log
 else
   ln -sf $HYPR_CONFIG/monitors/multi.conf $HYPR_CONFIG/monitors.conf
-  echo " - multi"
+  echo " - multi" >> monitor.log
 fi

@@ -1,10 +1,10 @@
 [Groups/0]
 # Group Name
-Name=Default
+Name="Group 1"
 # Layout
 Default Layout=us
 # Default Input Method
-DefaultIM=unikey
+DefaultIM=bamboo
 
 [Groups/0/Items/0]
 # Name
@@ -14,10 +14,10 @@ Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=unikey
+Name=bamboo
 # Layout
-Layout=
+Layout=us
 
 [GroupOrder]
-0=Default
+0="Group 1"
 

@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 prepend_keymap = [
 	{ on = "<C-Up>", run = "arrow -3", desc = "Move cursor up 3 units" },
 	{ on = "<C-Down>", run = "arrow +3", desc = "Move cursor down 3 units" },

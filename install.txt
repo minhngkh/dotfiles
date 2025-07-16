@@ -1,0 +1,93 @@
+## python
+paru -S uv
+
+paru -S anyrun-git
+
+paru -S polkit-gnome
+paru -S seahorse
+
+## hyprland
+paru -S cpio cmake meson
+hyprpm update
+hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
+hyprpm enable split-monitor-workspaces
+
+paru -S hyprprop-git
+
+uv tool install pyprland
+
+paru -S hyprland-monitor-attached
+paru -S hypridle hyprlock hyprpicker hyprsunset hyprsysteminfo
+paru -S hyprshot-git
+##--
+
+paru -S xdg-terminal-exec
+paru -S xorg-xwininfo
+paru -S wev
+paru -S blueberry
+
+paru -S ghostty
+
+paru -S visual-studio-code-bin
+
+paru -S zen-browser-bin
+
+
+paru -S thunar
+
+paru -S linux-wallpaperengine-git
+
+paru -S fcitx5
+paru -S fcitx5-configtool
+
+paru -S cliphist
+paru -S emote dolphin nwg-look
+paru -S sassc dialog optipng inkscape qt5-wayland kvantum-git kvantum-qt5 qt5-wayland qt6-wayland qt5ct qt6ct-kde kservice kservice5 archlinux-xdg-menu
+paru -S fcitx5-skin-fluentdark-git
+paru -S banana-cursor-bin
+
+paru -S oh-my-posh-bin
+
+
+# dot
+paru -S quickshell ttf-material-symbols-variable-git ttf-jetbrains-mono-nerd ttf-ibm-plex app2unit-git python-aubio python-pyaudio python-numpy networkmanager bluez-utils ddcutil brightnessctl imagemagick
+paru -S wl-screenrec wayfreeze-git python-materialyoucolor-git playerctl
+paru -S ags-hyprpanel-git
+
+paru -S nwg-displays
+paru -S tofi-git
+paru -S fuzzel
+
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+paru -S xremap-hypr-bin 
+
+# shell
+paru -S lsd zoxide fnm-bin lazygit yazi television github-cli
+paru -S dotnet-sdk aspnet-runtime
+paru -S spotify-launcher zenity ffmpeg4.4
+paru -S google-chrome thorium-browser-bin brave-bin
+paru -S tuned-ppd
+paru -S obs-studio obs-vkcapture lib32-obs-vkcapture
+paru -S docker docker-rootless-extras
+paru -S chatterino2-bin
+
+# discord
+paru -S discord vencord-installer-bin
+
+
+# intel
+paru -S vpl-gpu-rt libva-utils vulkan-tools intel-gpu-tools
+# enable xe new driver
+
+paru -S google-gemini-cli
+paru -S r-quick-share packet
+paru -S localsend-bin
+paru -S rmtrash
+paru -S azure-cli terraform
+paru -S lazydocker
+paru -S yaak-bin
+paru -S docker-buildx
+paru -S zip
+paru -S docker-compose
+paru -S yadm

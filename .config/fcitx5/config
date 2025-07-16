@@ -13,23 +13,33 @@ EnumerateSkipFirst=False
 EnumerateGroupForwardKeys=
 # Enumerate Input Method Group Backward
 EnumerateGroupBackwardKeys=
-# Activate Input Method
-ActivateKeys=
-# Deactivate Input Method
-DeactivateKeys=
-# Default Previous page
-PrevPage=
-# Default Next page
-NextPage=
-# Default Previous Candidate
-PrevCandidate=
-# Default Next Candidate
-NextCandidate=
 # Toggle embedded preedit
 TogglePreedit=
+# Time limit in milliseconds for triggering modifier key shortcuts
+ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
 0=Control+Alt+I
+1=Zenkaku_Hankaku
+2=Hangul
+
+[Hotkey/ActivateKeys]
+0=Hangul_Hanja
+
+[Hotkey/DeactivateKeys]
+0=Hangul_Romaja
+
+[Hotkey/PrevPage]
+0=Up
+
+[Hotkey/NextPage]
+0=Down
+
+[Hotkey/PrevCandidate]
+0=Shift+Tab
+
+[Hotkey/NextCandidate]
+0=Tab
 
 [Behavior]
 # Active By Default
@@ -41,7 +51,7 @@ ShareInputState=All
 # Show preedit in application
 PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method
-ShowInputMethodInformation=False
+ShowInputMethodInformation=True
 # Show Input Method Information when changing focus
 showInputMethodInformationWhenFocusIn=False
 # Show compact input method information
@@ -67,8 +77,4 @@ AutoSavePeriod=30
 
 [Behavior/DisabledAddons]
 0=clipboard
-1=emoji
-2=imselector
-3=kimpanel
-4=quickphrase
 

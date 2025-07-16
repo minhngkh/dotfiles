@@ -1,49 +1,62 @@
-// Inspired by Catnap
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-        "type": "small"
-    },
+    "logo": null,
     "display": {
-        "separator": " "        
+        "separator": "  ",
+        "color": "white",
+        "constants": ["\u001b[37m", "\u001b[38;5;214m", "\u001b[38;5;215m", "\u001b[38;5;216m"]
     },
     "modules": [
+        // "break",
         {
-            "key": "{#31}{icon} distro  {#keys}",
-            "type": "os"
+            "type": "custom",
+            "key": "╭───────────────────────────────────╮"
         },
         {
-            "key": "{#32} kernel  {#keys}",
-            "type": "kernel"
+            "type": "kernel",
+            "key": "│ {$2}{$1}  kernel",
+            "format": "{$2}{release>22}{$1} │"
+        },
+        {
+            "type": "command",
+            "key": "│   cpu",
+            "text": "lscpu | sed -rn 's/Model name:.* ([^ ]+ @ [^ ]+)/\\1/p'",
+            "format": "{>25} │"
+        },
+        {
+            "type": "gpu",
+            "key": "│ {$2}󰾲 {$1} gpu",
+            "format": "{$2}{name>25}{$1} │"
+        },
+        {
+            "type": "shell",
+            "key": "│ {$3}{$1}  shell",
+            "format": "{$3}{pretty-name>23}{$1} │",
         },
         {
             "type": "packages",
-            "key": "{#33}󰏖 pkgs    {#keys}"
+            "key": "│   pkgs  ",
+            "format": "{all>22} │"
         },
         {
-            "key": "{#34} wm      {#keys}",
-            "type": "wm"
+            "type": "terminal",
+            "key": "│ {$2} {$1} term",
+            "format": "{$2}{>24}{$1} │"
         },
         {
-            "key": "{#35} term    {#keys}",
-            "type": "terminal"
+            "type": "wm",
+            "key": "│   wm",
+            "format": "{>26} │"
         },
         {
-            "key": "{#36} shell   {#keys}",
-            "type": "shell"
+            "type": "os",
+            "key": "│ {$4}󰻀{$1}  distro",
+            "format": "{$4}{pretty-name>22}{$1} │"
         },
         {
-            "key": "{#31} cpu     {#keys}",
-            "type": "cpu",
-            "showPeCoreCount": true
+            "type": "custom",
+            "key": "╰───────────────────────────────────╯"
         },
-        {
-            "key": "{#32}󰾲 gpu     {#keys}",
-            "type": "gpu"
-        },
-        {
-            "key": "{#33}󰅐 uptime  {#keys}",
-            "type": "uptime"
-        }
+        "break"
     ]
 }

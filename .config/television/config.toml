@@ -16,13 +16,13 @@
 # General settings
 # ----------------------------------------------------------------------------
 frame_rate = 60 # DEPRECATED: this option is no longer used
-tick_rate = 75
+tick_rate = 50
 
 [ui]
 # Whether to use nerd font icons in the UI
 # This option requires a font patched with Nerd Font in order to properly
 # display glyphs (see https://www.nerdfonts.com/ for more information)
-use_nerd_font_icons = true
+use_nerd_font_icons = false
 # How much space to allocate for the UI (in percentage of the screen)
 # ┌───────────────────────────────────────┐
 # │                                       │
@@ -46,9 +46,9 @@ ui_scale = 100
 show_help_bar = false
 # Whether to show the preview panel in the UI by default
 # This option can be toggled with the (default) `ctrl-o` keybinding
-show_preview_panel = false
+show_preview_panel = true
 # Where to place the input bar in the UI (top or bottom)
-input_bar_position = "bottom"
+input_bar_position = "top"
 # DEPRECATED: title is now always displayed at the top as part of the border
 # Where to place the preview title in the UI (top or bottom)
 # preview_title_position = "top"

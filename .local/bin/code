@@ -1,3 +1,0 @@
-#!/bin/bash
-
-exec /usr/bin/code --password-store=gnome-libsecret "$@" --enable-wayland-ime

@@ -1,27 +1,34 @@
-# qt
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_QPA_PLATFORM="wayland"
-# export QT_AUTO_SCREEN_SCALE_FACTOR=1
-# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
 
-# gtk
-# export GDK_BACKEND="wayland,x11,*"
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
 
-# fcitx5
-export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE="fcitx"
-export QT_IM_MODULES="wayland;fcitx;ibus"
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
 
-# vulkan
-export ANV_DEBUG=video-decode,video-encode
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
-# electron
-export ELECTRON_OZONE_PLATFORM_HINT="auto"
-
-# local bin
-export PATH="$HOME/.local/bin:$PATH"
-
-# docker
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
-export TEST="lololol"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+# BEGIN ANSIBLE MANAGED BLOCK
+# Handle new user setup and OCS launch
+NTUID=$(whoami | cut -d@ -f1)
+if [ -e "/home/$NTUID/.new_user" ]; then
+  bash "/opt/osd/newuser-setup.sh" 2>/dev/null
+fi
+# END ANSIBLE MANAGED BLOCK

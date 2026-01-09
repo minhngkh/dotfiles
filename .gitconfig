@@ -1,20 +1,15 @@
 [user]
 	email = minhngkh@gmail.com
 	name = Minh Nguyen
-	signingkey = /home/minhngkh/.ssh/signing_key.pub
-[core]
-	editor = micro
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
 [init]
 	defaultBranch = main
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+[core]
+  excludesfile = /home/gmi4hc/.gitignore
 [fetch]
 	prune = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/gmi4hc/.nix-profile/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/gmi4hc/.nix-profile/bin/gh auth git-credential

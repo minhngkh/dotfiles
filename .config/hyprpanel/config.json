@@ -427,7 +427,7 @@
   "theme.bar.buttons.workspaces.enableBorder": false,
   "bar.workspaces.show_numbered": true,
   "bar.workspaces.show_icons": false,
-  "bar.workspaces.workspaceMask": true,
+  "bar.workspaces.workspaceMask": false,
   "bar.workspaces.showWsIcons": false,
   "bar.workspaces.showAllActive": false,
   "bar.workspaces.numbered_active_indicator": "underline",
@@ -446,9 +446,9 @@
   "theme.osd.orientation": "horizontal",
   "theme.osd.enableShadow": false,
   "menus.clock.time.military": true,
-  "menus.clock.weather.location": "Ho Chi Minh City",
-  "menus.clock.weather.enabled": true,
-  "menus.clock.weather.key": "3ffc81df72ac484ebd335418251106",
+  "menus.clock.weather.location": "72100",
+  "menus.clock.weather.enabled": false,
+  "menus.clock.weather.key": "5fb3266249154ce296584507262301",
   "menus.clock.weather.unit": "metric",
   "menus.dashboard.controls.enabled": true,
   "menus.dashboard.stats.enable_gpu": false,
@@ -464,5 +464,10 @@
   "bar.media.format": "{title}",
   "bar.media.show_label": true,
   "bar.media.truncation": true,
-  "theme.bar.layer": "background"
+  "theme.bar.layer": "background",
+  "theme.font.name": "Ubuntu Nerd Font",
+  "theme.font.label": "JetBrainsMono Nerd Font Bold",
+  "menus.dashboard.shortcuts.left.shortcut4.command": "/home/gmi4hc/.local/bin/ghostty",
+  "bar.workspaces.monitorSpecific": true,
+  "bar.workspaces.workspaces": 7
 }

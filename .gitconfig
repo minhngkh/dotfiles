@@ -13,3 +13,9 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/home/gmi4hc/.nix-profile/bin/gh auth git-credential
+[credential]
+	credentialStore = secretservice
+	helper = 
+	helper = /home/gmi4hc/.dotnet/tools/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

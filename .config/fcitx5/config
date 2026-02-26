@@ -13,21 +13,15 @@ EnumerateSkipFirst=False
 EnumerateGroupForwardKeys=
 # Enumerate Input Method Group Backward
 EnumerateGroupBackwardKeys=
+# Activate Input Method
+ActivateKeys=
+# Deactivate Input Method
+DeactivateKeys=
 # Toggle embedded preedit
 TogglePreedit=
-# Time limit in milliseconds for triggering modifier key shortcuts
-ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
 0=Control+Alt+I
-1=Zenkaku_Hankaku
-2=Hangul
-
-[Hotkey/ActivateKeys]
-0=Hangul_Hanja
-
-[Hotkey/DeactivateKeys]
-0=Hangul_Romaja
 
 [Hotkey/PrevPage]
 0=Up
@@ -44,8 +38,6 @@ ModifierOnlyKeyTimeout=250
 [Behavior]
 # Active By Default
 ActiveByDefault=False
-# Reset state on Focus In
-resetStateWhenFocusIn=No
 # Share Input State
 ShareInputState=All
 # Show preedit in application
@@ -68,12 +60,6 @@ CustomXkbOption=
 EnabledAddons=
 # Preload input method to be used by default
 PreloadInputMethod=True
-# Allow input method in the password field
-AllowInputMethodForPassword=False
-# Show preedit text when typing password
-ShowPreeditForPassword=False
-# Interval of saving user data in minutes
-AutoSavePeriod=30
 
 [Behavior/DisabledAddons]
 0=clipboard

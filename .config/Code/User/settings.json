@@ -1,4 +1,12 @@
 {
+  "http.proxy": "http://127.0.0.1:3128",
+  "http.proxyStrictSSL": false,
+  "http.useLocalProxyConfiguration": true,
+  "dotnetAcquisitionExtension.proxyUrl": "http://127.0.0.1:3128",
+  "http.electronFetch": true,
+
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+
   "workbench.colorCustomizations": {
     "panel.border": "#f1f1f1f1",
     "editorGroup.border": "#f1f1f1f1",
@@ -26,7 +34,7 @@
     "editorGroupHeader.tabsBackground": "#1e1e1e",
     "sideBar.background": "#1e1e1e",
     "sideBarSectionHeader.background": "#1e1e1e",
-    "activityBar.background": "#1e1e1e"
+    "activityBar.background": "#1e1e1e",
   },
 
   // "workbench.colorCustomizations": {
@@ -59,12 +67,13 @@
   //   // "activityBar.background": "#1e1e1e"
   // },
 
+  // 31.3
+
   "window.titleBarStyle": "custom",
   "window.customTitleBarVisibility": "auto",
-  "editor.fontFamily": "'JetGraph Nerd Font', 'monospace', monospace",
+  "editor.fontFamily": "'JetBrains Mono', monospace",
   // "editor.fontFamily": "'Maple Mono NF', 'monospace', monospace",
   "editor.fontSize": 16,
-  // "editor.fontWeight": "600",
   "editor.fontWeight": "600",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.fontSize": 15,
@@ -78,15 +87,15 @@
       {
         "scope": [
           "comment",
-          "variable.language"
+          "variable.language",
           // "meta.type.annotation",
           // "meta.return.type",
         ],
         "settings": {
-          "fontStyle": "italic"
-        }
-      }
-    ]
+          "fontStyle": "italic",
+        },
+      },
+    ],
   },
   "editor.minimap.enabled": false,
   "editor.inlayHints.enabled": "offUnlessPressed",
@@ -94,7 +103,7 @@
   "typescript.inlayHints.parameterNames.enabled": "literals",
   // Golang
   "gopls": {
-    "ui.semanticTokens": true
+    "ui.semanticTokens": true,
   },
   "go.inlayHints.compositeLiteralFields": true,
   "go.inlayHints.compositeLiteralTypes": true,
@@ -140,12 +149,15 @@
     "hyprpicker",
     "hyprprop",
     "hyprsunset",
+    "IDOR",
     "instrumentalness",
     "keymap",
     "langchain",
     "masstransit",
+    "mcps",
     "monokai",
     "Msgf",
+    "nameof",
     "neverthrow",
     "nodenext",
     "oapi",
@@ -162,6 +174,7 @@
     "speechiness",
     "swww",
     "tofi",
+    "treenode",
     "tursodatabase",
     "typesafe",
     "uncolorize",
@@ -170,31 +183,32 @@
     "Valorant",
     "VITE",
     "webelement",
+    "websearch",
     "wofi",
     "wpctl",
     "XAUTHORITY",
     "xcursor",
     "xrgb",
-    "xwininfo"
+    "xwininfo",
   ],
   "color-highlight.markerType": "dot-before",
   "[python]": {
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.black-formatter",
   },
   "editor.renderWhitespace": "selection",
   // "[json][jsonc][css][typescriptreact][typescript]": {
   //   "editor.defaultFormatter": "biomejs.biome"
   // },
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   // tailwind
   "files.associations": {
-    "*.css": "tailwindcss",
-    "Makefile": "makefile"
+    "*.css": "css",
+    "Makefile": "makefile",
   },
   // "editor.quickSuggestions": {
   //   "strings": "on"
@@ -203,9 +217,7 @@
   //   ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
   //   ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   // ],
-  "github.copilot.advanced": {
-    "authProvider": "github"
-  },
+  "github.copilot.advanced": {},
   "discord.suppressNotifications": true,
   "cSpell.languageSettings": [
     {
@@ -219,24 +231,24 @@
         "movetoworkspace",
         "movetoworkspacesilent",
         "popin",
-        "windowrulev2"
+        "windowrulev2",
       ],
-      "ignoreWords": ["hypr"]
+      "ignoreWords": ["hypr"],
     },
     {
       "languageId": "go",
       "allowCompoundWords": true,
-      "words": ["joho", "godotenv", "gomail"]
+      "words": ["joho", "godotenv", "gomail"],
     },
     {
       "languageId": "shellscript",
-      "allowCompoundWords": true
-    }
+      "allowCompoundWords": true,
+    },
   ],
   "workbench.iconTheme": "symbols",
   "redhat.telemetry.enabled": false,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.js",
@@ -250,26 +262,26 @@
     "*.sqlite3": "${capture}.${extname}-*",
     "*.db3": "${capture}.${extname}-*",
     "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
+    "*.s3db": "${capture}.${extname}-*",
   },
   "todo-tree.general.showActivityBarBadge": true,
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "pulumi-lsp.detectExtensionConflicts": false,
   "tailwind-fold.autoFold": false,
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "problems.visibility": true,
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
     "markdown": true,
-    "scminput": false
+    "scminput": false,
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "tailwindRainbow.languages": [
     "html",
@@ -280,11 +292,11 @@
     "vue",
     "svelte",
     "astro",
-    "php"
+    "php",
   ],
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "python.analysis.typeCheckingMode": "standard",
-  "github.copilot.chat.newWorkspaceCreation.enabled": true,
+  "github.copilot.chat.newWorkspaceCreation.enabled": false,
   "github.copilot.chat.codesearch.enabled": true,
   "openapi.platformUrl": "https://platform.42crunch.com",
   "openapi.platformAuthType": "anond-token",
@@ -296,12 +308,12 @@
     "timeout": 300,
     "header": {
       "name": "",
-      "value": ""
-    }
+      "value": "",
+    },
   },
   "openapi.docker": {
     "replaceLocalhost": true,
-    "useHostNetwork": true
+    "useHostNetwork": true,
   },
   "openapi.platformAuditRuntime": "platform",
   "openapi.platformConformanceScanRuntime": "cli",
@@ -320,24 +332,15 @@
     "editor.quickSuggestions": {
       "comments": "off",
       "strings": "off",
-      "other": "off"
+      "other": "off",
     },
     "cSpell.fixSpellingWithRenameProvider": true,
     "cSpell.advanced.feature.useReferenceProviderWithRename": true,
-    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
-  },
-  "mcp": {
-    "inputs": [],
-    "servers": {
-      "Context7": {
-        "type": "stdio",
-        "command": "npx",
-        "args": ["-y", "@upstash/context7-mcp@latest"]
-      }
-    }
+    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "prettify-ts.enabled": false,
   "workbench.sideBar.location": "right",
@@ -345,25 +348,24 @@
   "todo-tree.highlights.customHighlight": {
     "TODO": {
       "background": "#f59e0b",
-      "foreground": "#fafafa"
+      "foreground": "#fafafa",
     },
     "FIXME": {
       "background": "#ef4444",
-      "foreground": "#fafafa"
-    }
+      "foreground": "#fafafa",
+    },
   },
   "[csharp]": {
-    "editor.defaultFormatter": "csharpier.csharpier-vscode"
+    "editor.defaultFormatter": "csharpier.csharpier-vscode",
   },
   "csharpier.enableDiagnostics": false,
-  "dotnet.testWindow.disableAutoDiscovery": true,
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
-      "text": "Follow the Conventional Commits format strictly for commit messages. Use the structure below:\n\n```\n<type>[optional scope]: <description>\n\n[optional body]\n```\n\nGuidelines:\n\n1. **Type and Scope**: Choose an appropriate type (e.g., `feat`, `fix`) and optional scope to describe the affected module or feature.\n\n2. **Description**: Write a concise, informative description in the header; use backticks if referencing code or specific terms.\n\n3. **Body**: The body is optional. \n   - For very small or self-explanatory changes, the body can be omitted entirely.\n   - If the change requires further explanation, provide a concise body.\n   - Use bullet points (`*`) for clarity if listing multiple points or details.\n   - Briefly describe the motivation, context, or technical details if they aren't obvious from the description and the change isn't trivial.\n\nCommit messages should be clear, informative, and professional, aiding readability and project tracking."
-    }
+      "text": "Follow the Conventional Commits format strictly for commit messages. Use the structure below:\n\n```\n<type>[optional scope]: <description>\n\n[optional body]\n```\n\nGuidelines:\n\n1. **Type and Scope**: Choose an appropriate type (e.g., `feat`, `fix`) and optional scope to describe the affected module or feature.\n\n2. **Description**: Write a concise, informative description in the header; use backticks if referencing code or specific terms.\n\n3. **Body**: The body is optional. \n   - For very small or self-explanatory changes, the body can be omitted entirely.\n   - If the change requires further explanation, provide a concise body.\n   - Use bullet points (`*`) for clarity if listing multiple points or details.\n   - Briefly describe the motivation, context, or technical details if they aren't obvious from the description and the change isn't trivial.\n\nCommit messages should be clear, informative, and professional, aiding readability and project tracking.",
+    },
   ],
   "git.autofetch": true,
   // "files.watcherExclude": {
@@ -376,12 +378,70 @@
   "docker.extension.enableComposeLanguageServer": false,
   "docker.extension.dockerEngineAvailabilityPrompt": false,
   "[dockerfile]": {
-    "editor.defaultFormatter": "docker.docker"
+    "editor.defaultFormatter": "docker.docker",
   },
   "azureTerraform.survey": {
     "surveyPromptDate": "2025-07-08T11:45:43.591Z",
-    "surveyPromptIgnoredCount": 0
-  }
+    "surveyPromptIgnoredCount": 0,
+  },
+  "dotnet.testWindow.disableAutoDiscovery": true,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "4390ED13-3AFB-4397-BD85-B27E828BD066",
+    },
+  ],
+  "mssql.connections": [
+    {
+      "server": "localhost",
+      "user": "sa",
+      "password": "",
+      "authenticationType": "SqlLogin",
+      "encrypt": "Optional",
+      "trustServerCertificate": true,
+      "connectTimeout": 30,
+      "commandTimeout": 30,
+      "connectRetryCount": 1,
+      "connectRetryInterval": 10,
+      "applicationName": "vscode-mssql",
+      "profileName": "test",
+      "savePassword": true,
+      "groupId": "4390ED13-3AFB-4397-BD85-B27E828BD066",
+      "id": "3833621D-56B6-44AC-A006-D37B129DD718",
+      "database": "",
+      "profileSource": 0,
+    },
+  ],
+  "dotnet.automaticallyCreateSolutionInWorkspace": false,
+  "[xml]": {
+    "editor.defaultFormatter": "csharpier.csharpier-vscode",
+  },
+  "git.openRepositoryInParentFolders": "always",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.codeLens.enabled": false,
+  "chat.viewSessions.orientation": "stacked",
+  "gitlens.statusBar.enabled": false,
+  "gitlens.hovers.enabled": false,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/bin/**": true,
+    "**/obj/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+  },
+  "omnisharp.projectFilesExcludePattern": "**/node_modules/**,**/.git/**,**/bower_components/**,**/bin/**,**/obj/**,**/wwwroot/lib/**",
+  "dotnet.preferVisualStudioCodeFileSystemWatcher": true,
+  "dotnet.projects.enableAutomaticRestore": false,
+  "dotnet.projects.enableFileBasedPrograms": false,
+  "dotnet.projects.enableFileBasedProgramsWhenAmbiguous": false,
+  "omnisharp.autoStart": false,
   // "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [
   //   {
   //     "text": "Follow these guidelines and use the provided template structure when generating Pull Request (PR) descriptions. The goal is to create clear, informative, and reviewer-friendly PRs that provide necessary context without being overly verbose, especially for minor changes.\n\n**Guidelines for Generating Pull Request Descriptions:**\n\n1.  **PR Title is Key**:\n    *   The PR title should be concise and descriptive, similar to a good commit message subject line (e.g., `feat(auth): implement OTP login` or `fix(ui): correct button alignment on profile page`).\n    *   If the PR is small and the title is self-explanatory (e.g., `docs: fix typo in README`), the body can be very brief or even just link to an issue.\n\n2.  **Use the Provided PR Template Structure**:\n    *   Fill out the sections of the PR template relevant to the changes.\n    *   **Not all sections are mandatory for every PR.** Use judgment. For very small PRs, many sections can be omitted or kept extremely brief.\n\n3.  **Purpose / Description (`### 🎯 Purpose / Description`)**:\n    *   **Why was this change made?** What problem does it solve, or what feature does it add?\n    *   Link to relevant issues, tickets, or user stories (e.g., `Closes #123`, `Addresses JIRA-456`).\n    *   **For small PRs**: If the title and linked issue clearly convey the purpose, this section can be very short (e.g., \"Addresses issue #123 by updating the validation logic.\") or even \"As per #123.\"\n\n4.  **Changes Made (`### ✨ Changes Made`)**:\n    *   Provide a **high-level summary** of the changes. Bullet points are preferred for readability.\n    *   Focus on *what* was changed from a functional or architectural perspective, not a line-by-line code explanation.\n    *   **For small PRs**: This might be a single bullet point or even omitted if the \"Purpose\" and code diff are sufficiently clear.\n\n5.  **How to Test / Verify (`### 🧪 How to Test / Verify`)**:\n    *   Provide clear, step-by-step instructions for reviewers to test and verify the changes.\n    *   Include any necessary setup or specific data required.\n    *   **For small PRs (e.g., non-functional changes, documentation, simple bug fixes with obvious verification)**: This section might be \"N/A\" or \"Verify the updated documentation\" or \"Run unit tests.\"\n\n6.  **Screenshots / GIFs (`### 📸 Screenshots / GIFs (if applicable)`)**:\n    *   **Crucial for UI changes.** Include before/after screenshots or GIFs.\n    *   Omit if not applicable.\n\n7.  **Checklist (`### ☑️ Checklist (Optional but Recommended)`)**:\n    *   A self-review checklist for the author and a quick check for reviewers.\n    *   Customize based on project needs.\n\n8.  **Notes for Reviewers (`### 🗒️ Notes for Reviewers (Optional)`)**:\n    *   Use for specific points for reviewers: alternatives considered, known limitations, questions.\n    *   **For small PRs**: Likely not needed unless there's a subtle point.\n\n**General Guidelines for PR Descriptions:**\n\n*   **Be Reviewer-Centric**: Write for the reviewer.\n*   **Conciseness is Valued**: Provide enough info, but avoid excessive detail.\n*   **Professional Tone**: Maintain a respectful tone.\n*   **Use Markdown**: For formatting and readability.\n*   **Proofread**: Check for typos and clarity.\n\n---\n\n**Suggested Pull Request Template (to be used as a base for generation):**\n\n```markdown\n<!--\nThank you for your contribution!\nPlease provide a clear and concise description of your changes.\nNot all sections are required for every PR; use your judgment.\nFor small changes, a good title and a link to the issue might be sufficient.\n-->\n\n### 🎯 Purpose / Description\n<!--\nWhat is the goal of this PR? What problem does it solve or feature does it add?\nLink to relevant issues: e.g., Closes #123, Addresses JIRA-456\nFor small PRs, if the title and linked issue are clear, keep this brief.\n-->\n\n\n### ✨ Changes Made\n<!--\nProvide a high-level summary of the changes. Bullet points are preferred.\n-\n-\nFor small PRs, this might be a single point or omitted if obvious.\n-->\n\n\n### 🧪 How to Test / Verify\n<!--\nProvide clear, step-by-step instructions for reviewers.\nInclude any necessary setup or specific data.\n1.\n2.\n3.\nFor small/obvious changes, this might be \"N/A\" or very brief.\n-->\n\n\n### 📸 Screenshots / GIFs (if applicable)\n<!--\nInclude before/after screenshots or GIFs for UI changes.\nDelete this section if not applicable.\n-->\n\n---\n\n### ☑️ Checklist (Optional but Recommended)\n<!--\nPut an `x` in all the boxes that apply.\n-->\n- [ ] My code follows the project's coding standards and style guide.\n- [ ] I have added relevant tests to cover my changes.\n- [ ] All new and existing tests pass.\n- [ ] I have updated the documentation accordingly.\n- [ ] I have performed a self-review of my own code.\n- [ ] I have linked this PR to the relevant issue(s).\n\n### 🗒️ Notes for Reviewers (Optional)\n<!--\nAnything specific you want to draw the reviewer's attention to?\ne.g., trade-offs made, areas of concern, specific feedback requested.\n-->\n```\n"

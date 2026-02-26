@@ -138,4 +138,12 @@
     "key": "alt+right",
     "command": "workbench.action.nextEditor"
   },
+  {
+    "key": "ctrl+alt+j",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "-workbench.action.togglePanel"
+  },
 ]

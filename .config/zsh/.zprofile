@@ -1,1 +1,1 @@
-/home/minhngkh/.profile
+../../.profile

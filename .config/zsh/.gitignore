@@ -1,0 +1,7 @@
+.zcompdump*
+.zhistory
+.zsh_history
+integrations/
+completions/
+.zim/
+.zcompcache/

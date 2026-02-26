@@ -1,3 +1,4 @@
 [Default Applications]
-x-scheme-handler/web+msteams=msedge-cifhbcnohmdccbgoicgdjpfamggdegmo-Default.desktop
-x-scheme-handler/mailto=thunderbird.desktop;msedge-faolnafnngnfdaknnbpnkhgohbobgegn-Default.desktop
+x-scheme-handler/web+msteams=msedge-cifhbcnohmdccbgoicgdjpfamggdegmo-Default.desktop;chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Default.desktop
+x-scheme-handler/mailto=thunderbird.desktop;msedge-faolnafnngnfdaknnbpnkhgohbobgegn-Default.desktop;chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default.desktop
+x-scheme-handler/google-chrome=google-chrome.desktop;;chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Default.desktop;chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default.desktop

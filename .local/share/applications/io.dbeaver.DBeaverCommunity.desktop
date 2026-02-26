@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=DBeaver CE
+Comment=Universal Database Manager and SQL Client.
+Icon=io.dbeaver.DBeaverCommunity
+StartupWMClass=DBeaver
+StartupNotify=true
+X-Desktop-File-Install-Version=0.28
+Categories=IDE;Development;
+Keywords=Database;SQL;IDE;JDBC;ODBC;MySQL;PostgreSQL;
+GenericName=Database Manager
+MimeType=application/sql;
+; Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/dbeaver-wrapper --share=network --filesystem="$HOME/dbeaver-truststore.jks" --env=_JAVA_OPTIONS="-Djavax.net.ssl.trustStore=$HOME/dbeaver-truststore.jks -Djavax.net.ssl.trustStorePassword=changeit" io.dbeaver.DBeaverCommunity
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/dbeaver-wrapper --share=network  --filesystem="$HOME/dbeaver-truststore.jks" --env=JAVA_TOOL_OPTIONS="-Djavax.net.ssl.trustStore=$HOME/dbeaver-truststore.jks -Djavax.net.ssl.trustStorePassword=changeit" --env=_JAVA_OPTIONS="-Djavax.net.ssl.trustStore=$HOME/dbeaver-truststore.jks -Djavax.net.ssl.trustStorePassword=changeit" io.dbeaver.DBeaverCommunity
+X-Flatpak=io.dbeaver.DBeaverCommunity

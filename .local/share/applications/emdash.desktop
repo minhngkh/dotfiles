@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Emdash
+Exec=/home/gmi4hc/.local/bin/emdash %U
+Terminal=false
+Type=Application
+Icon=emdash
+StartupWMClass=Emdash
+Comment=A cross-platform Electron app that orchestrates multiple coding agents in parallel
+Categories=Development;

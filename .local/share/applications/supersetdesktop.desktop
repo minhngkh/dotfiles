@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Superset Desktop
+Comment=The last developer tool you’ll ever need
+Exec=/home/gmi4hc/.local/bin/supersetdesktop %U
+Terminal=false
+Type=Application
+Icon=supersetdesktop
+StartupWMClass=Superset
+Categories=Utility;
+MimeType=x-scheme-handler/superset;

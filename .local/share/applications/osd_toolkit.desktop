@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=OSD Toolkit (wrapped)
+Comment=Toolkit application for OSD
+GenericName=osd_toolkit_wrapped
+Exec=/home/gmi4hc/.local/bin/gnomeapp /opt/osd/osd-toolkit-package/osd_toolkit
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/share/icons/hicolor/256x256/apps/osd_toolkit_icon.png
+Categories=OSD

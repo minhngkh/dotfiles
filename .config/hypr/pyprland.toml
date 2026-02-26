@@ -3,8 +3,10 @@ plugins = ["shortcuts_menu", "toggle_special"]
 
 # using variables for demonstration purposes (not needed)
 [pyprland.variables]
-float_term = "ghostty --class=com.hypr.float_win -e"
-float_term_c = "ghostty --class=com.hypr.float_win"
+term_h_large = "ghostty --class=com.hypr.float_win_h_large"
+term_h_mid = "ghostty --class=com.hypr.float_win_h_mid"
+term_v_large = "ghostty --class=com.hypr.float_win_v_large"
+
 
 # [scratchpads.term]
 # animation = ""
@@ -31,11 +33,12 @@ parameters = ""
 [shortcuts_menu.entries]
 # "hyprprop" = "kitty -- sh -c 'hyprprop; read'"
 # "hyprprop" = "[float_term_c] --title hyprprop -- sh -c 'hyprprop; read -rsn1'"
-"hyprprop" = "[float_term_c] --title=hyprprop -e sh -c 'hyprprop; read -rsn1'"
-"bpytop" = "[float_term_c] --title bpytop bpytop"
-"xwininfo" = "[float_term] sh -c 'xwininfo; read'"
-"View keybinds" = "[float_term] micro $HYPR_CONFIG/hyprland/keybinds.conf"
-"View install.txt" = "[float_term] micro $HOME/install.txt"
+# "hyprprop" = "[term_v_large] -e sh -c 'hyprprop; read -rsn1'"
+"ducker" = "[term_h_large] -e ducker"
+"bpytop" = "[term_h_large] -e btop"
+# "xwininfo" = "[float_term] sh -c 'xwininfo; read'"
+"View keybinds" = "[term_h_mid] -e micro $HOME/.config/hypr/hyprland/keybinds.conf"
+# "View install.txt" = "[float_term] micro $HOME/install.txt"
 
 "Hyprland socket" = 'kitty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
 "Hyprland logs" = 'kitty tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log'

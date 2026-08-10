@@ -1,0 +1,31 @@
+[user]
+	email = minhngkh@gmail.com
+	name = Minh Nguyen
+	
+[init]
+	defaultBranch = main
+	
+[fetch]
+	prune = true
+	writeCommitGraph = true
+	
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/gmi4hc/.nix-profile/bin/gh auth git-credential
+	
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/gmi4hc/.nix-profile/bin/gh auth git-credential
+	
+[credential "http://127.0.0.1:3128"]
+	provider = generic
+	
+[credential]
+	helper = /home/gmi4hc/.dotnet/tools/git-credential-manager
+	credentialStore = secretservice
+
+[worktrunk]
+  default-branch = dev
+
+[includeIf "gitdir:~/work/"]
+	path = "~/.config/git/work_config"

@@ -1,0 +1,2 @@
+#!/bin/sh
+CC=/usr/bin/gcc CXX=/usr/bin/g++ "$@"

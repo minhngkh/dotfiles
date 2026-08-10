@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Fast Nautilus launcher for this mixed Ubuntu/Nix/Hyprland session.
+# Avoids inheriting Ghostty's GSETTINGS_BACKEND=memory while forcing GTK/cursor
+# theme directly, so Nautilus does not depend on terminal/session theme state.
+
+exec system-gui-app env \
+  GTK_THEME=Graphite-Dark \
+  NO_AT_BRIDGE=1 \
+  GDK_BACKEND=wayland \
+  XCURSOR_THEME=Bibata-Modern-Classic \
+  XCURSOR_SIZE=24 \
+  XCURSOR_PATH=/home/gmi4hc/.local/share/icons:/home/gmi4hc/.icons:/usr/local/share/icons:/usr/share/icons \
+  nautilus --new-window "$@"

@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+export PATH="$HOME/.local/bin:$PATH"
+
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --shell zsh)"
+fi
+
+typeset -U path
+export PATH="${(j/:/)path}"
+
+XDG_DATA_DIRS_DEFAULT="/usr/local/share:/usr/share:/var/lib/snapd/desktop"
+XDG_DATA_DIRS_VALUE="${XDG_DATA_DIRS:-$XDG_DATA_DIRS_DEFAULT}"
+XDG_CURRENT_DESKTOP_VALUE="${XDG_CURRENT_DESKTOP:-Hyprland}"
+XDG_SESSION_TYPE_VALUE="${XDG_SESSION_TYPE:-wayland}"
+XAUTHORITY_VALUE="${XAUTHORITY:-${XDG_RUNTIME_DIR:-$HOME}/.Xauthority}"
+QT_QPA_PLATFORM_VALUE="${QT_QPA_PLATFORM:-wayland}"
+
+exec env -i \
+  HOME="$HOME" USER="$USER" LOGNAME="${LOGNAME:-$USER}" SHELL="${SHELL:-$(command -v zsh)}" \
+  PATH="$PATH" \
+  XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-}" WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-}" DISPLAY="${DISPLAY:-}" \
+  XAUTHORITY="${XAUTHORITY_VALUE:-}" QT_QPA_PLATFORM="$QT_QPA_PLATFORM_VALUE" \
+  DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-}" \
+  XDG_SESSION_TYPE="$XDG_SESSION_TYPE_VALUE" XDG_CURRENT_DESKTOP="$XDG_CURRENT_DESKTOP_VALUE" XDG_DATA_DIRS="$XDG_DATA_DIRS_VALUE" \
+  HTTP_PROXY="${HTTP_PROXY:-}" HTTPS_PROXY="${HTTPS_PROXY:-}" ALL_PROXY="${ALL_PROXY:-}" NO_PROXY="${NO_PROXY:-}" \
+  http_proxy="${http_proxy:-}" https_proxy="${https_proxy:-}" all_proxy="${all_proxy:-}" no_proxy="${no_proxy:-}" \
+  SSL_CERT_FILE="${SSL_CERT_FILE:-}" SSL_CERT_DIR="${SSL_CERT_DIR:-}" CURL_CA_BUNDLE="${CURL_CA_BUNDLE:-}" REQUESTS_CA_BUNDLE="${REQUESTS_CA_BUNDLE:-}" \
+  LANG="${LANG:-C.UTF-8}" \
+  "$@"

@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+set -eu
+
+auth_dir="${OPENCODE_AUTH_DIR:-$HOME/.local/share/opencode}"
+link="$auth_dir/auth.json"
+auth_1="$auth_dir/auth_1.json"
+auth_22="$auth_dir/auth_22.json"
+
+if [ ! -f "$auth_1" ]; then
+  printf 'Missing %s\n' "$auth_1" >&2
+  exit 1
+fi
+
+if [ ! -f "$auth_22" ]; then
+  printf 'Missing %s\n' "$auth_22" >&2
+  exit 1
+fi
+
+if [ ! -L "$link" ]; then
+  printf '%s is not a symlink; refusing to replace it.\n' "$link" >&2
+  exit 1
+fi
+
+current="$(readlink "$link")"
+current_name="${current##*/}"
+
+case "$current_name" in
+  auth_1.json)
+    next="auth_22.json"
+    ;;
+  auth_22.json)
+    next="auth_1.json"
+    ;;
+  *)
+    printf '%s points to %s, not auth_1.json or auth_22.json.\n' "$link" "$current" >&2
+    exit 1
+    ;;
+esac
+
+tmp="$link.tmp.$$"
+ln -s "$next" "$tmp"
+mv -Tf "$tmp" "$link"
+
+printf 'auth.json -> %s\n' "$next"

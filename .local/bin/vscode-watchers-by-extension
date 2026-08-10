@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+import glob
+import os
+import re
+from collections import defaultdict
+
+EXT_RE = re.compile(r"/home/[^/]+/\.vscode/extensions/([^/]+?)-\d")
+
+
+def read_cmd(pid: int) -> str:
+    try:
+        with open(f"/proc/{pid}/cmdline", "rb") as f:
+            return f.read().replace(b"\x00", b" ").decode("utf-8", "ignore").strip()
+    except Exception:
+        return ""
+
+
+def read_ppid(pid: int) -> int:
+    try:
+        with open(f"/proc/{pid}/status", "r", errors="ignore") as f:
+            for line in f:
+                if line.startswith("PPid:"):
+                    return int(line.split()[1])
+    except Exception:
+        pass
+    return 0
+
+
+def owner(pid: int) -> str:
+    seen = set()
+    cur = pid
+
+    for _ in range(10):
+        if not cur or cur in seen:
+            break
+        seen.add(cur)
+
+        cmd = read_cmd(cur)
+
+        m = EXT_RE.search(cmd)
+        if m:
+            return m.group(1)
+
+        if "Microsoft.VisualStudio.Code.ServiceHost" in cmd or "Microsoft.VisualStudio.Code.Server" in cmd:
+            return "ms-dotnettools.csdevkit"
+
+        if "/usr/share/code/code" in cmd or "node.mojom.NodeService" in cmd:
+            return "vscode-core"
+
+        cur = read_ppid(cur)
+
+    return "other"
+
+
+def main() -> None:
+    watch_by_pid = defaultdict(int)
+
+    for fd_path in glob.glob("/proc/[0-9]*/fd/*"):
+        try:
+            target = os.readlink(fd_path)
+            if target != "anon_inode:inotify":
+                continue
+
+            _, _, pid_text, _, fd_text = fd_path.split("/", 4)
+            pid = int(pid_text)
+            fd = int(fd_text)
+            fdinfo_path = f"/proc/{pid}/fdinfo/{fd}"
+
+            with open(fdinfo_path, "r", errors="ignore") as f:
+                count = sum(1 for line in f if line.startswith("inotify"))
+
+            if count:
+                watch_by_pid[pid] += count
+        except Exception:
+            continue
+
+    by_owner = defaultdict(int)
+    for pid, count in watch_by_pid.items():
+        by_owner[owner(pid)] += count
+
+    total = sum(watch_by_pid.values())
+    print("TOTAL\tOWNER")
+    print(f"{total}\t(all processes)")
+
+    print("WATCHES\tOWNER")
+    for name, count in sorted(by_owner.items(), key=lambda item: item[1], reverse=True):
+        print(f"{count}\t{name}")
+
+
+if __name__ == "__main__":
+    main()

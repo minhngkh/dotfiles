@@ -1,0 +1,7 @@
+#!/bin/bash
+
+while true; do
+    /home/gmi4hc/.local/bin/hyprdynamicmonitors run
+    echo "HyprDynamicMonitors exited with code $?, restarting in 5 seconds..."
+    sleep 5
+done

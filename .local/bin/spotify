@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+flatpak run --branch=stable --socket=wayland --arch=x86_64 --command=/app/extra/bin/spotify --file-forwarding --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons com.spotify.Client --enable-gpu-rasterization --enable-zero-copy --enable-gpu-compositing --enable-native-gpu-memory-buffers --enable-oop-rasterization --enable-features=UseSkiaRenderer --ozone-platform=wayland --disable-gpu-sandbox '--enable-features=UseSkiaRenderer,WaylandWindowDecorations'

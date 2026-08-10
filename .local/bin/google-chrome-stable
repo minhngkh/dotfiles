@@ -1,0 +1,7 @@
+exec /usr/bin/google-chrome-stable \
+	--password-store=gnome-libsecret \
+	--ozone-platform-hint=wayland \
+	--ignore-gpu-blocklist \
+	--disable-features=UseSkiaRenderer \
+	--enable-features=VaapiVideoDecodeLinuxGL \
+	"$@"

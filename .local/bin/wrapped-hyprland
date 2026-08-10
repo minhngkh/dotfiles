@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# cd $HOME
+PATH="/home/gmi4hc/.nix-profile/bin:$PATH" 
+# zsh -l -c "PATH=\"/home/gmi4hc/.nix-profile/bin:$PATH\" /home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland"
+# /usr/bin/zsh -l -c "exec /home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland"
+/home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland

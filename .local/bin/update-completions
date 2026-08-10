@@ -1,0 +1,32 @@
+#!/usr/bin/zsh
+
+c="$ZDOTDIR/completions"
+i="$ZDOTDIR/integrations"
+
+mkdir -p $c $i
+# bun completions > $c/_bun
+# gh completion -s zsh > $c/_gh
+# dotnet completions script zsh > $c/_dotnet
+# dotnet completions script zsh | while IFS= read -r line; do
+#   case "$line" in
+#     *"'/v="*|*"'/verbosity="*)
+#       continue
+#       ;;
+#     *"applicationArguments -- Arguments passed to the application that is being run.: "*)
+#       line="${line/applicationArguments -- Arguments passed to the application that is being run.: /applicationArguments:_files}"
+#       ;;
+#   esac
+#   print -r -- "$line"
+# done > "$c/_dotnet"
+wt config shell init zsh > $i/_wt
+fzf --zsh > $i/_fzf
+zoxide init zsh > $i/_zoxide
+
+
+rustup completions zsh > $c/_rustup
+rustup completions zsh cargo > $c/_cargo
+uv generate-shell-completion zsh > $c/_ut
+opencode completion > $c/_opencode
+btca --completions=zsh > $c/_btca
+kubectl completion zsh > $c/_kubectl
+ln -sf $HOME/.bun/_bun $c/

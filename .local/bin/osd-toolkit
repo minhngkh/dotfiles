@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# Wrapper to run /opt/osd/osd-toolkit-package/osd_toolkit
+# with clean environment (no Nix lib contamination)
+
+XDG_DATA_DIRS_DEFAULT="/usr/local/share:/usr/share:/var/lib/snapd/desktop"
+XDG_DATA_DIRS_VALUE="${XDG_DATA_DIRS:-$XDG_DATA_DIRS_DEFAULT}"
+XDG_CURRENT_DESKTOP_VALUE="${XDG_CURRENT_DESKTOP:-GNOME}"
+XDG_SESSION_TYPE_VALUE="${XDG_SESSION_TYPE:-wayland}"
+
+OVERRIDE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/osd-toolkit"
+OVERRIDE_C="$OVERRIDE_DIR/gdk_backend_override.c"
+OVERRIDE_SO="$OVERRIDE_DIR/gdk_backend_override.so"
+
+if [ ! -f "$OVERRIDE_SO" ]; then
+  mkdir -p "$OVERRIDE_DIR"
+  cat > "$OVERRIDE_C" << 'EOF'
+void gdk_set_allowed_backends(const char *backends) {
+  (void)backends;
+}
+EOF
+  if command -v gcc >/dev/null 2>&1; then
+    gcc -shared -fPIC -O2 -o "$OVERRIDE_SO" "$OVERRIDE_C" 2>/dev/null || true
+  fi
+fi
+
+if [ -f "$OVERRIDE_SO" ]; then
+  LD_PRELOAD_VALUE="$OVERRIDE_SO"
+else
+  LD_PRELOAD_VALUE=""
+fi
+
+if [ -n "$LD_PRELOAD_VALUE" ]; then
+  exec env -i \
+    HOME="$HOME" USER="$USER" LOGNAME="${LOGNAME:-$USER}" SHELL="${SHELL:-/bin/sh}" \
+    PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-}" WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-}" \
+    DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-}" \
+    XDG_SESSION_TYPE="$XDG_SESSION_TYPE_VALUE" XDG_CURRENT_DESKTOP="$XDG_CURRENT_DESKTOP_VALUE" XDG_DATA_DIRS="$XDG_DATA_DIRS_VALUE" \
+    LANG="${LANG:-C.UTF-8}" \
+    GDK_BACKEND=wayland QT_QPA_PLATFORM=wayland CLUTTER_BACKEND=wayland SDL_VIDEODRIVER=wayland \
+    LD_PRELOAD="$LD_PRELOAD_VALUE" \
+    /opt/osd/osd-toolkit-package/osd_toolkit "$@"
+fi
+
+exec env -i \
+  HOME="$HOME" USER="$USER" LOGNAME="${LOGNAME:-$USER}" SHELL="${SHELL:-/bin/sh}" \
+  PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+  XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-}" WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-}" \
+  DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-}" \
+  XDG_SESSION_TYPE="$XDG_SESSION_TYPE_VALUE" XDG_CURRENT_DESKTOP="$XDG_CURRENT_DESKTOP_VALUE" XDG_DATA_DIRS="$XDG_DATA_DIRS_VALUE" \
+  LANG="${LANG:-C.UTF-8}" \
+  GDK_BACKEND=wayland QT_QPA_PLATFORM=wayland CLUTTER_BACKEND=wayland SDL_VIDEODRIVER=wayland \
+  /opt/osd/osd-toolkit-package/osd_toolkit "$@"

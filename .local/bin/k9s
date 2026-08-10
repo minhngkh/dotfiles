@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+uid="$(id -u)"
+gid="$(id -g)"
+user="${USER:-gmi4hc}"
+home="${HOME:-/home/gmi4hc}"
+shell="${SHELL:-/bin/zsh}"
+
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}/k9s-nss-wrapper"
+mkdir -p "$runtime_dir"
+chmod 700 "$runtime_dir"
+
+passwd_file="$runtime_dir/passwd"
+group_file="$runtime_dir/group"
+
+printf '%s:x:%s:%s:%s:%s:%s\n' "$user" "$uid" "$gid" "$user" "$home" "$shell" > "$passwd_file"
+printf '%s:x:%s:\n' "$user" "$gid" > "$group_file"
+
+lib="$(nix eval --raw nixpkgs#nss_wrapper.outPath)/lib/libnss_wrapper.so"
+
+export NSS_WRAPPER_PASSWD="$passwd_file"
+export NSS_WRAPPER_GROUP="$group_file"
+export LD_PRELOAD="${lib}${LD_PRELOAD:+:$LD_PRELOAD}"
+
+exec "$HOME/.nix-profile/bin/k9s" "$@"

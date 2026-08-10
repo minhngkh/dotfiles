@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=Microsoft 365
-Exec=/opt/microsoft/msedge/microsoft-edge --profile-directory=Default --app-id=onhfoihkhodaeblmangmjjgfpfehnlkm "--app-url=https://www.microsoft365.com/?from=Homescreen"
-Icon=msedge-onhfoihkhodaeblmangmjjgfpfehnlkm-Default
-StartupWMClass=crx__onhfoihkhodaeblmangmjjgfpfehnlkm

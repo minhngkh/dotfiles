@@ -1,0 +1,24 @@
+{
+  "theme": {
+    "name": "opencode"
+  },
+  "diffs": {
+    "wrap": "word",
+    "single": true
+  },
+  "terminal": {
+    "title": true
+  },
+  "prompt": {
+    "editor": false
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": true,
+    "thinking": "hide"
+  },
+  "animations": true,
+  "attention": {
+    "enabled": true
+  }
+}

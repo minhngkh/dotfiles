@@ -1,0 +1,7 @@
+---
+description: save prd
+agent: build
+model: github-copilot/gpt-4.1
+---
+
+Help me save the prd content wrapped in between the [PRD]...[/PRD] (without the [PRD]) in the last message to prd.md

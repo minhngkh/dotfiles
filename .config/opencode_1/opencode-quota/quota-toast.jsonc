@@ -1,0 +1,26 @@
+{
+  // Provider selection: "auto" detects providers; an array tracks only listed providers.
+  "enabledProviders": "auto",
+  // Automatic quota surfaces. Slash commands remain available when these are disabled.
+  "enableToast": false,
+  "requestTimeoutMs": 30000,
+  // Quota presentation and reset-period choices.
+  "formatStyle": "allWindows",
+  "percentDisplayMode": "used",
+  "opencodeGoWindows": "monthly",
+  // TUI-only surfaces.
+  "tuiSidebarPanel": {
+    "enabled": true
+  },
+  "tuiCompactStatus": {
+    "enabled": false
+  },
+  "tuiCommandDisplay": "inline",
+  // Include or hide current-session input and output token totals.
+  "showSessionTokens": false,
+  // Optional bundled maintainer Home announcements.
+  "maintainerAnnouncements": {
+    "enabled": true,
+    "home": true
+  }
+}

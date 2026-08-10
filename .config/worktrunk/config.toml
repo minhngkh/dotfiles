@@ -1,0 +1,19 @@
+# ~/.config/worktrunk/config.toml
+# worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
+
+[commit.generation]
+command = "opencode run --pure --agent build --model opencode-go/deepseek-v4-flash --variant low"
+template-append = """
+- Use conventional commits (feat:, fix:, docs:, …)
+- The title of the commit should be concise and not too much into impl detail
+- The Body of commit should use bullet points that is not too complicated and to impl focus (if even need to write, omit the body for sipmle change commit)
+"""
+
+[[pre-start]]
+setup = "{{ repo_path }}/../sync.sh || true"
+
+[projects."prodbgsw@dev.azure.com/prodbgsw/SAT/_git/SAT"]
+post-start.install-fe = "cd ./src/frontend && npm install"
+
+[projects.""]

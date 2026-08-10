@@ -1,0 +1,21 @@
+{
+  "theme": {
+    "name": "gruvbox-custom"
+  },
+  "diffs": {
+    "wrap": "word",
+    "single": true
+  },
+  "terminal": {
+    "title": true
+  },
+  "prompt": {
+    "editor": false
+  },
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": true,
+    "thinking": "hide"
+  },
+  "animations": true
+}

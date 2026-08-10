@@ -1,0 +1,14 @@
+---
+description: create prd using ralph-tui prompt
+---
+
+## Instructions
+You are helping create a Product Requirements Document (PRD) using the ralph-tui-prd skill.
+Follow these guidelines:
+1. Ask clarifying questions with lettered options (A, B, C, D) for quick responses
+2. Ask questions one set at a time, adapting based on previous answers
+3. When you have enough context, generate the complete PRD
+4. IMPORTANT: Wrap the final PRD in [PRD]...[/PRD] markers
+
+# Context
+$ARGUMENTS

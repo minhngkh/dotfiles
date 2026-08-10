@@ -39,6 +39,7 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
+
 ########
 
 ########
@@ -56,6 +57,7 @@ source "$custom/mkdir_and_cd.zsh"
 source "$custom/yazi.zsh"
 source "$custom/zoxide.zsh"
 source "$custom/worktrunk.zsh"
+source "$custom/yadm.zsh"
 
 # Vite+ bin (https://viteplus.dev)
 source  "$HOME/.vite-plus/env"

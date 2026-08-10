@@ -20,7 +20,7 @@
 # export ELECTRON_OZONE_PLATFORM_HINT="auto"
 # 
 # local bin
-export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/.local/bin:$PATH"
 
 # docker
 # export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
@@ -41,3 +41,5 @@ export PROFILE_USED="yes"
 # export HTTP_PROXY=
 # export HTTPS_PROXY=
 
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_DIR=/etc/ssl/certs:/home/gmi4hc/.aspnet/dev-certs/trust

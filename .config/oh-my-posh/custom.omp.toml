@@ -1,5 +1,6 @@
-version = 3
+version = 4
 final_space = true
+# async = false
 
 [[blocks]]
   type = 'prompt'
@@ -93,7 +94,7 @@ final_space = true
       cache_duration = 'none'
 
   [[blocks.segments]]
-    template = '<white>(</>{{ if glob "bun.lockb" }}<#faefde>🥟 {{ .Full }}</>{{ else }}<#6cc24a> {{ .Full }}</>{{ end }}<white>)</>'
+    template = '<white>(</>{{ if glob "bun.lockb" }}<#faefde>🥟 {{ .Full }}</>{{ else }}<#6cc24a> {{ .Major }}</>{{ end }}<white>)</>'
     type = 'node'
     style = 'plain'
 
@@ -101,8 +102,8 @@ final_space = true
       cache_duration = 'none'
 
   [[blocks.segments]]
-    template = '<white>(</>{{ if .Unsupported }}{{ .Unsupported }}{{ else }} {{ .Full }}{{ end }}<white>)</>'
-    foreground = '#4122aa'
+    template = '<white>(</>{{ if .Unsupported }}{{ .Unsupported }}{{ else }}󰪮 {{ .Major }}{{ end }}<white>)</>'
+    foreground = '#512BD4'
     type = 'dotnet'
     style = 'plain'
 

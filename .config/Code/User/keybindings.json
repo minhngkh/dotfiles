@@ -146,4 +146,18 @@
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
   },
+  {
+    "key": "ctrl+k ctrl+shift+f",
+    "command": "editor.action.formatSelection",
+    "when": "editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+k ctrl+f",
+    "command": "-editor.action.formatSelection",
+    "when": "editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+k ctrl+f",
+    "command": "editor.action.formatChanges"
+  },
 ]

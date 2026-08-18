@@ -15,10 +15,16 @@
   "session": {
     "sidebar": "auto",
     "scrollbar": true,
-    "thinking": "hide"
+    "thinking": "hide",
+    "new_location": "launch",
+    "grouping": "auto"
   },
   "animations": true,
   "attention": {
     "enabled": true
+  },
+  "tabs": {
+    "enabled": false,
+    "scope": "cwd"
   }
 }

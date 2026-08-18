@@ -3,8 +3,6 @@
         "tabstospaces": false
     },
     "clipboard": "terminal",
-    "softwrap": true,
     "tabsize": 2,
-    "tabstospaces": true,
-    "wordwrap": true
+    "tabstospaces": true
 }

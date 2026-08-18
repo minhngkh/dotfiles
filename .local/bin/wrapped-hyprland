@@ -2,6 +2,10 @@
 
 # cd $HOME
 PATH="/home/gmi4hc/.nix-profile/bin:$PATH" 
+
+# Append nix profile share dirs so launchers see ~/.nix-profile/share/applications/
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:+$XDG_DATA_DIRS:}$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share"
+
 # zsh -l -c "PATH=\"/home/gmi4hc/.nix-profile/bin:$PATH\" /home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland"
 # /usr/bin/zsh -l -c "exec /home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland"
 /home/gmi4hc/.nix-profile/bin/nixGL /home/gmi4hc/.nix-profile/bin/start-hyprland

@@ -15,6 +15,7 @@ HYPRCURSOR_SIZE_VALUE="${HYPRCURSOR_SIZE:-$XCURSOR_SIZE_VALUE}"
 exec env -i \
   HOME="$HOME" USER="$USER" LOGNAME="${LOGNAME:-$USER}" SHELL="${SHELL:-/bin/sh}" \
   PATH="/home/gmi4hc/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+  DESKTOPINTEGRATION="${DESKTOPINTEGRATION:-}" \
   XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-}" WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-}" \
   ELECTRON_OZONE_PLATFORM_HINT="wayland" \
   QT_QPA_PLATFORM="$QT_QPA_PLATFORM_VALUE" \

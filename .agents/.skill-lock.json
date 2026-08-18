@@ -189,16 +189,6 @@
       "installedAt": "2026-07-09T07:37:27.533Z",
       "updatedAt": "2026-08-10T09:55:47.283Z"
     },
-    "diagnosing-bugs": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
-      "skillFolderHash": "463c81def888fefa77b894837d301d9ed70e0994",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-08-10T09:55:47.273Z",
-      "updatedAt": "2026-08-10T09:55:47.273Z"
-    },
     "implement": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -248,12 +238,33 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-08-10T09:55:47.283Z",
       "updatedAt": "2026-08-10T09:55:47.283Z"
+    },
+    "angular-developer": {
+      "source": "angular/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/angular/skills.git",
+      "skillPath": "angular-developer/SKILL.md",
+      "skillFolderHash": "5e2de933fe276c9a6a41c6e6abec2f27fe61790c",
+      "installedAt": "2026-08-12T10:26:42.277Z",
+      "updatedAt": "2026-08-12T10:26:42.277Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
   },
   "lastSelectedAgents": [
-    "opencode"
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
   ]
 }

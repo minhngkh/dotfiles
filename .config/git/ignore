@@ -3,3 +3,4 @@
 .opencode
 # .scratch/
 .worktrees/
+.config/wt.toml

@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_edit_predictions": true,
+  "lsp_results_location": "picker",
+  "diff_view_style": "split",
+  "git_panel": {
+    "tree_view": true,
+    "sort_by": "path",
+    "group_by": "staging"
+  },
   "git": {
     "inline_blame": {
       "location": "status_bar"
@@ -40,6 +48,7 @@
   },
   "file_scan_exclusions": ["**/bin/**", "**/obj/**"],
   "agent": {
+    "enable_feedback": false,
     "commit_message_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -61,6 +70,7 @@
     "file_icons": true
   },
   "title_bar": {
+    "show_worktree_name": true,
     "show_branch_status_icon": true
   },
   "proxy": "http://127.0.0.1:3128",
@@ -90,6 +100,25 @@
     "panel.background": "#1e1e1e",
     "border": "#f1f1f1f1"
   },
+  "lsp": {
+    "angular": {
+      "initialization_options": {
+        "angular_language_server_path": "/home/gmi4hc/.bun/install/global/node_modules/@angular/language-server"
+      }
+    },
+    "roslyn": {
+      "settings": {
+        "csharp|code_lens": {
+          "dotnet_enable_references_code_lens": true,
+          "dotnet_enable_tests_code_lens": true
+        }
+      },
+      "binary": {
+        "path": "/home/gmi4hc/.dotnet/tools/roslyn-language-server",
+        "arguments": ["--stdio", "--autoLoadProjects"]
+      }
+    }
+  },
   "languages": {
     "CSharp": {
       "preferred_line_length": 100,
@@ -100,7 +129,7 @@
           "command": "fast-csharpier",
           "arguments": ["{buffer_path}"]
         }
-      }
+      },
     },
     "CSS": {
       "prettier": { "allowed": false },
@@ -141,143 +170,5 @@
       "prettier": { "allowed": false },
       "formatter": [{ "language_server": { "name": "oxfmt" } }]
     }
-  },
-  //   "CSS": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "HTML": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "JavaScript": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "language_servers": ["!eslint", "..."],
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       },
-  //       {
-  //         "code_action": "source.fixAll.oxc"
-  //       }
-  //     ]
-  //   },
-  //   "JSON": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "JSONC": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "Markdown": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "SCSS": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "TypeScript": {
-  //     "prettier": {
-  //       "allowed": true
-  //     },
-  //     "language_servers": [
-  //       "!eslint",
-  //       "!tailwindcss-language-server",
-  //       "!typescript-language-server",
-  //       "..."
-  //     ]
-  //     // "formatter": [
-  //     //   {
-  //     //     "language_server": {
-  //     //       "name": "oxfmt"
-  //     //     }
-  //     //   }
-  //     // ]
-  //   },
-  //   "Angular": {
-  //     "language_servers": ["!typescript-language-server", "..."],
-  //     "prettier": {
-  //       "allowed": true
-  //     }
-  //   },
-  //   "TSX": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   "YAML": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": [
-  //       {
-  //         "language_server": {
-  //           "name": "oxfmt"
-  //         }
-  //       }
-  //     ]
-  //   }
-  // },
-  // "language_servers": ["...", "!tailwindcss-language-server"]
+  }
 }

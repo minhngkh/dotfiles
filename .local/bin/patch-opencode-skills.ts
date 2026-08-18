@@ -39,7 +39,7 @@ function patchSkill(filePath: string) {
   if (autoinvokeKey.test(patchedFrontmatter)) {
     patchedFrontmatter = patchedFrontmatter.replace(
       autoinvokeKey,
-      '$1"opencode/autoinvoke": "false"',
+      '$1"opencode/autoinvoke": false',
     )
   } else {
     const emptyInlineMetadata = /^metadata:\s*\{\s*\}\s*$/m

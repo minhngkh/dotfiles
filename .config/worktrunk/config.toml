@@ -3,7 +3,7 @@
 worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
 
 [commit.generation]
-command = "opencode run --pure --agent build --model opencode-go/deepseek-v4-flash --variant low"
+command = "opencode2 run --agent build --model opencode-go/deepseek-v4-flash#low"
 template-append = """
 - Use conventional commits (feat:, fix:, docs:, …)
 - The title of the commit should be concise and not too much into impl detail
@@ -15,5 +15,6 @@ setup = "{{ repo_path }}/../sync.sh || true"
 
 [projects."prodbgsw@dev.azure.com/prodbgsw/SAT/_git/SAT"]
 post-start.install-fe = "cd ./src/frontend && npm install"
+worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 
-[projects.""]
+# [projects.""]

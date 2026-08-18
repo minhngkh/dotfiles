@@ -8,4 +8,7 @@
       },
     },
   ],
+  "websearch": {
+    "provider": "random"
+  },
 }

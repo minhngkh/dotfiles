@@ -1,34 +1,8 @@
 #!/usr/bin/bash
+# Launch ghostty via nixGL, bypassing the Nix C wrapper to avoid dconf
+# (ABI mismatch: libdconfsettings.so vs host glib on non-NixOS)
 
-# 1. Bypass the Nix GIO wrapper that forces dconf.
-# 2. Re-apply required GTK environment without GIO_EXTRA_MODULES.
-
-ghostty_store=/nix/store/20pmv3vfzmivwkg1bn4kv1yf1hkgh5fc-ghostty-1.2.3
-
-gdk_pixbuf_module_file=/nix/store/8gz43a07r76vahgqlx88iz9yi22shdv0-librsvg-2.61.3/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-
-xdg_data_dirs_prefix_1=/nix/store/las4lwsvf3an27b8v16wvp076zicnscp-gsettings-desktop-schemas-49.1/share/gsettings-schemas/gsettings-desktop-schemas-49.1:/nix/store/2q23pqf1c03iwdr61pn6anrdbm3iia7r-gtk4-4.20.3/share/gsettings-schemas/gtk4-4.20.3
-xdg_data_dirs_prefix_2=${ghostty_store}/share
-
-if [ -n "${XDG_DATA_DIRS:-}" ]; then
-  xdg_data_dirs="${xdg_data_dirs_prefix_2}:${XDG_DATA_DIRS}"
-else
-  xdg_data_dirs="${xdg_data_dirs_prefix_2}"
-fi
-xdg_data_dirs="${xdg_data_dirs_prefix_1}:${xdg_data_dirs}"
-
-gi_typelib_prefix=/nix/store/f7rcazhd826xlcz43il4vafv28888cgj-glib-2.86.3/lib/girepository-1.0:/nix/store/5k9nfx38ckb0wkwsgy925ddzdhrvj16s-gdk-pixbuf-2.44.4/lib/girepository-1.0:/nix/store/8gz43a07r76vahgqlx88iz9yi22shdv0-librsvg-2.61.3/lib/girepository-1.0:/nix/store/02zshzjav1m806f484gf16jm4gcmyc45-graphene-1.10.8/lib/girepository-1.0:/nix/store/40b7x2n2yylv79rgnavw3xk7yp9308jx-harfbuzz-12.2.0/lib/girepository-1.0:/nix/store/7qlq78jh6n35v1xpxyd6c279nbf0r88f-pango-1.57.0/lib/girepository-1.0:/nix/store/las4lwsvf3an27b8v16wvp076zicnscp-gsettings-desktop-schemas-49.1/lib/girepository-1.0:/nix/store/2q23pqf1c03iwdr61pn6anrdbm3iia7r-gtk4-4.20.3/lib/girepository-1.0:/nix/store/a6lbn8jx31y6yi18j4a7z66r2jb705jd-gobject-introspection-1.86.0/lib/girepository-1.0:/nix/store/3wrcnw529sfzhbdyb30kv3qxmyggxima-libadwaita-1.8.2/lib/girepository-1.0:/nix/store/c76n9ijyyh19ia6hwna5pqmhfgr146b0-gtk4-layer-shell-1.2.0/lib/girepository-1.0
-
-if [ -n "${GI_TYPELIB_PATH:-}" ]; then
-  gi_typelib_path="${gi_typelib_prefix}:${GI_TYPELIB_PATH}"
-else
-  gi_typelib_path="${gi_typelib_prefix}"
-fi
+ghostty_real=$(dirname "$(readlink -f ~/.nix-profile/bin/ghostty)")/.ghostty-wrapped
 
 exec /usr/bin/env -u GIO_EXTRA_MODULES -u GIO_MODULE_DIR \
-  GSETTINGS_BACKEND=memory \
-  GDK_PIXBUF_MODULE_FILE="${gdk_pixbuf_module_file}" \
-  XDG_DATA_DIRS="${xdg_data_dirs}" \
-  GI_TYPELIB_PATH="${gi_typelib_path}" \
-  /home/gmi4hc/.nix-profile/bin/nixGL \
-  ${ghostty_store}/bin/.ghostty-wrapped "$@"
+  nixGL "$ghostty_real" "$@"

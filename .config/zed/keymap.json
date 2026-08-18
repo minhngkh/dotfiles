@@ -10,76 +10,82 @@
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
-    },
+    }
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // "j k": "vim::NormalBefore"
-    },
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-q": "editor::Rewrap"
+    }
   },
   {
     "context": "Editor",
     "bindings": {
       "ctrl-enter": "editor::NewlineBelow",
-      "ctrl-shift-enter": "editor::NewlineAbove",
-    },
+      "ctrl-shift-enter": "editor::NewlineAbove"
+    }
   },
   {
     "context": "Editor && edit_prediction",
     "bindings": {
       "tab": "editor::AcceptEditPrediction",
       // Optional: This makes the default `alt-l` binding do nothing.
-      "alt-l": null,
-    },
+      "alt-l": null
+    }
   },
   {
     "context": "Editor && (edit_prediction && (showing_completions || in_leading_whitespace))",
     "bindings": {
       "alt-tab": "editor::AcceptEditPrediction",
       // Optional: This makes the default `alt-l` binding do nothing.
-      "alt-l": null,
-    },
+      "alt-l": null
+    }
   },
   {
     "bindings": {
-      "ctrl-shift-b": "outline_panel::Toggle",
-    },
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-shift-b": null,
-    },
+      "ctrl-shift-b": "outline_panel::Toggle"
+    }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-b": null,
-    },
+      "ctrl-shift-b": null
+    }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-alt-b": null,
-    },
+      "ctrl-b": null
+    }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-b": "workspace::ToggleRightDock",
-    },
+      "ctrl-alt-b": null
+    }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "alt-b": "workspace::ToggleLeftDock",
-    },
+      "ctrl-b": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-b": "workspace::ToggleLeftDock"
+    }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-p": null,
-    },
-  },
+      "ctrl-p": null
+    }
+  }
 ]

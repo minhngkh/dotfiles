@@ -4,7 +4,7 @@ Use Angular's HTTP APIs for backend communication so requests participate in dep
 
 ## Setup
 
-In Angular v21 and later, `HttpClient` is available for injection by default. Add `provideHttpClient(...)` only when an app needs to configure HTTP features for a specific injector:
+`HttpClient` is available for injection by default. Add `provideHttpClient(...)` only when an app needs to configure HTTP features for a specific injector:
 
 ```ts
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
@@ -27,9 +27,9 @@ Encapsulate backend calls in injectable services, not components:
 
 ```ts
 import {HttpClient} from '@angular/common/http';
-import {Service, inject} from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 
-@Service()
+@Injectable({providedIn: 'root'})
 export class UserService {
   private readonly http = inject(HttpClient);
 

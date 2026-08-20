@@ -1,86 +1,69 @@
 ---
 name: angular-developer
-description: Generates Angular code and provides architectural guidance. Trigger when creating projects, components, services, or HTTP communication, or for best practices on reactivity (signals, linkedSignal, resource, httpResource), forms, dependency injection, routing, SSR, accessibility (ARIA), animations, styling (component styles, Tailwind CSS), testing, or CLI tooling.
+description: Angular development. Use when building, modifying, debugging, testing, reviewing, or migrating Angular applications and libraries, including components, templates, directives, pipes, signals, forms, HTTP, dependency injection, routing, SSR, accessibility, styling, animations, and builds.
 license: MIT
 metadata:
   author: Copyright 2026 Google LLC
-  version: '1.0'
+  version: '1.1'
 ---
 
-# Angular Developer Guidelines
+# Angular Developer
 
-1. Always analyze the project's Angular version before providing guidance, as best practices and available features can vary significantly between versions. If creating a new project with Angular CLI, do not specify a version unless prompted by the user.
+## Workflow
 
-2. When generating code, follow Angular's style guide and best practices for maintainability and performance. Use the Angular CLI for scaffolding components, services, directives, pipes, and routes to ensure consistency.
+1. **Inspect the workspace.** Before choosing APIs or giving version-sensitive guidance, read `package.json`, `angular.json` when present, and nearby code. Identify the Angular and Angular CLI major versions, package manager, standalone or NgModule conventions, form strategy, test runner, and whether the application uses Zone.js. The inspection is complete when every version-sensitive choice in the task can be tied to installed packages or an explicit new-project target.
+2. **Load the matching references.** Before planning or editing, map the task to every matching branch below and read each linked reference. Overlapping tasks require all matching references. For example, a routed component test requires both testing fundamentals and router testing. Installed package APIs, project configuration, and existing conventions take precedence when a reference describes a different version.
+3. **Implement in context.** Preserve established naming, architecture, and package versions unless the task is an explicit migration. Edit the smallest coherent set of files directly, following the workspace's conventions.
+4. **Verify the changed scope.** After code changes, run the most relevant tests and the build for the affected application or library. Fix failures introduced by the change. Report pre-existing failures, unavailable commands, and checks that could not run rather than expanding the task to unrelated repairs.
 
-3. Once you finish generating code, run `ng build` to ensure there are no build errors. If there are errors, analyze the error messages and fix them before proceeding. Do not skip this step, as it is critical for ensuring the generated code is correct and functional.
+For conceptual guidance outside a workspace, state the Angular version assumed whenever the answer depends on it.
 
 ## Creating New Projects
 
-If no guidelines are provided by the user, here are some default rules to follow when creating a new Angular project:
-
-1. Use the latest stable version of Angular unless the user specifies otherwise.
-2. Use Signals Forms for form management in new projects (available in Angular v21 and newer) [Find out more](references/signal-forms.md).
-
-**Execution Rules for `ng new`:**
-When asked to create a new Angular project, you must determine the correct execution command by following these strict steps:
-
-**Step 1: Check for an explicit user version.**
-
-- **IF** the user requests a specific version (e.g., Angular 15), bypass local installations and strictly use `npx`.
-- **Command:** `npx @angular/cli@<requested_version> new <project-name>`
-
-**Step 2: Check for an existing Angular installation.**
-
-- **IF** no specific version is requested, run `ng version` in the terminal to check if the Angular CLI is already installed on the system.
-- **IF** the command succeeds and returns an installed version, use the local/global installation directly.
-- **Command:** `ng new <project-name>`
-
-**Step 3: Fallback to Latest.**
-
-- **IF** no specific version is requested AND the `ng version` command fails (indicating no Angular installation exists), you must use `npx` to fetch the latest version.
-- **Command:** `npx @angular/cli@latest new <project-name>`
+Read [project-creation.md](references/project-creation.md) when scaffolding a new application or library.
 
 ## Components
 
-When working with Angular components, consult the following references based on the task:
+For component work, read every matching reference:
 
 - **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](references/components.md)
 - **Inputs**: Signal-based inputs, transforms, and model inputs. Read [inputs.md](references/inputs.md)
 - **Outputs**: Signal-based outputs and custom event best practices. Read [outputs.md](references/outputs.md)
 - **Host Elements**: Host bindings and attribute injection. Read [host-elements.md](references/host-elements.md)
 
-If you require deeper documentation not found in the references above, read the documentation at `https://angular.dev/guide/components`.
+For directives, content projection, queries, lifecycle, or other component topics not covered locally, use the matching guide at `https://angular.dev/guide/components` after inspecting the installed Angular version.
 
 ## Reactivity and Data Management
 
-When managing state and data reactivity, use Angular Signals and consult the following references:
+For reactive state, read every matching reference. Preserve RxJS where it already models event streams or cancellation well; do not migrate it merely because signals are available.
 
 - **Signals Overview**: Core signal concepts (`signal`, `computed`), reactive contexts, and `untracked`. Read [signals-overview.md](references/signals-overview.md)
 - **Dependent State (`linkedSignal`)**: Creating writable state linked to source signals. Read [linked-signal.md](references/linked-signal.md)
-- **Async Reactivity (`resource`)**: Fetching asynchronous data directly into signal state. Read [resource.md](references/resource.md)
-- **Side Effects (`effect`)**: Logging, third-party DOM manipulation (`afterRenderEffect`), and when NOT to use effects. Read [effects.md](references/effects.md)
+- **Async Reactivity (`resource`)**: Fetching asynchronous data into signal state. Read [resource.md](references/resource.md)
+- **Side Effects (`effect`)**: External synchronization, third-party DOM integration, and render effects. Read [effects.md](references/effects.md)
 
 ## HTTP Communication
 
-When communicating with backend services, use Angular HTTP APIs and consult the following reference:
+For `HttpClient`, interceptors, HTTP security, or HTTP testing setup, read:
 
 - **HTTP Client and Resources**: `provideHttpClient`, `HttpClient`, interceptors, and `httpResource`. Read [http-client.md](references/http-client.md)
 
+For `httpResource`, also read [resource.md](references/resource.md).
+
 ## Forms
 
-In most cases for new apps, **prefer signal forms**. When making a forms decision, analyze the project and consider the following guidelines:
+Choose the form API from the installed Angular version and the surrounding feature:
 
-- If the application is using v21 or newer and this is a new form, **prefer signal forms**.
-- For older applications or when working with existing forms, use the appropriate form type that matches the applications current form strategy.
+- Prefer Signal Forms for new forms when they fit the project; preserve an established Reactive or template-driven forms strategy for existing features.
+- For Angular 20 and earlier, use Reactive or template-driven forms.
 
-- **Signal Forms**: Use signals for form state management. Read [signal-forms.md](references/signal-forms.md)
-- **Template-driven forms**: Use for simple forms. Read [template-driven-forms.md](references/template-driven-forms.md)
-- **Reactive forms**: Use for complex forms. Read [reactive-forms.md](references/reactive-forms.md)
+- **Signal Forms**: Model-driven signal state for new forms. Read [signal-forms.md](references/signal-forms.md)
+- **Template-driven forms**: Existing or simple forms centered on template directives. Read [template-driven-forms.md](references/template-driven-forms.md)
+- **Reactive forms**: Existing form models and complex imperative control composition. Read [reactive-forms.md](references/reactive-forms.md)
 
 ## Dependency Injection
 
-When implementing dependency injection in Angular, follow these guidelines:
+For dependency injection, read every matching reference:
 
 - **Fundamentals**: Overview of Dependency Injection, services, and the `inject()` function. Read [di-fundamentals.md](references/di-fundamentals.md)
 - **Creating and Using Services**: Creating services, the `providedIn: 'root'` option, and injecting into components or other services. Read [creating-services.md](references/creating-services.md)
@@ -94,15 +77,16 @@ When formatting values in templates, creating custom pipes, or reusing pipe-like
 
 - **Pipes**: Built-in pipe imports, custom pipe naming and implementation, pure vs impure pipes, and TypeScript reuse patterns using standalone formatting functions or extracted plain functions. Read [pipes.md](references/pipes.md)
 
-## Angular Aria
+## Accessibility And Angular Aria
 
-When building accessible custom components for any of the following patterns: Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid, consult the following reference:
+- **Accessibility Fundamentals**: Semantic HTML, accessible names, keyboard and focus behavior, and verification. Read [accessibility.md](references/accessibility.md)
+- **Angular Aria Components**: Headless custom Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, and Grid patterns. Read [angular-aria.md](references/angular-aria.md)
 
-- **Angular Aria Components**: Building headless, accessible components (Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid) and styling ARIA attributes. Read [angular-aria.md](references/angular-aria.md)
+For an Angular Aria control bound with Signal Forms, read both [angular-aria.md](references/angular-aria.md) and [signal-forms.md](references/signal-forms.md).
 
 ## Routing
 
-When implementing navigation in Angular, consult the following references:
+For routing or rendering work (CSR, SSG, SSR), read every matching reference:
 
 - **Define Routes**: URL paths, static vs dynamic segments, wildcards, and redirects. Read [define-routes.md](references/define-routes.md)
 - **Route Loading Strategies**: Eager vs lazy loading, and context-aware loading. Read [loading-strategies.md](references/loading-strategies.md)
@@ -114,30 +98,31 @@ When implementing navigation in Angular, consult the following references:
 - **Rendering Strategies**: CSR, SSG (Prerendering), and SSR with hydration. Read [rendering-strategies.md](references/rendering-strategies.md)
 - **Route Transition Animations**: Enabling and customizing the View Transitions API. Read [route-animations.md](references/route-animations.md)
 
-If you require deeper documentation or more context, visit the [official Angular Routing guide](https://angular.dev/guide/routing).
+For route state, custom matching, reuse, or other routing topics not covered locally, use the matching guide at `https://angular.dev/guide/routing`.
 
 ## Styling and Animations
 
-When implementing styling and animations in Angular, consult the following references:
+For styling and animations, read every matching reference:
 
 - **Using Tailwind CSS with Angular**: Integrating Tailwind CSS into Angular projects. Read [tailwind-css.md](references/tailwind-css.md)
-- **Angular Animations**: Using native CSS (recommended) or the legacy DSL for dynamic effects. Read [angular-animations.md](references/angular-animations.md)
+- **Element Animations**: Native CSS, `animate.enter` and `animate.leave`, or the legacy DSL. Read [angular-animations.md](references/angular-animations.md)
 - **Styling components**: Best practices for component styles and encapsulation. Read [component-styling.md](references/component-styling.md)
+
+Route View Transitions use [route-animations.md](references/route-animations.md), not the element animation reference.
 
 ## Testing
 
-When writing or updating tests, consult the following references based on the task:
+For unit and component tests, always read testing fundamentals, then read each specialized reference that matches:
 
-- **Fundamentals**: Best practices for unit testing (Vitest), async patterns, and `TestBed`. Read [testing-fundamentals.md](references/testing-fundamentals.md)
+- **Fundamentals**: Existing test-runner detection, async patterns, and `TestBed`. Read [testing-fundamentals.md](references/testing-fundamentals.md)
 - **Component Harnesses**: Standard patterns for robust component interaction. Read [component-harnesses.md](references/component-harnesses.md)
 - **Router Testing**: Using `RouterTestingHarness` for reliable navigation tests. Read [router-testing.md](references/router-testing.md)
-- **End-to-End (E2E) Testing**: Setting up and running E2E tests. Read [e2e-testing.md](references/e2e-testing.md)
+- **End-to-End (E2E) Testing**: Preserve, configure, and run the workspace's E2E framework. Read [e2e-testing.md](references/e2e-testing.md)
 
 ## Tooling
 
-When working with Angular tooling, consult the following references:
+For tooling, read every matching reference:
 
-- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](references/cli.md)
+- **Angular CLI**: Managing dependencies, serving, and building. Read [cli.md](references/cli.md)
 - **Code Modernization**: Automatically refactoring to modern standards using migrations. Read [migrations.md](references/migrations.md)
-- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](references/mcp.md)
 - **Environment Configuration**: Strategies for build-time and runtime configuration. Read [environment-configuration.md](references/environment-configuration.md)

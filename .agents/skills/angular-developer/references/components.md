@@ -101,17 +101,21 @@ The `@switch` block renders content based on a value. It uses strict equality (`
 } }
 ```
 
-**Exhaustive Type Checking**: Use `@default never;` to ensure all cases of a union type are handled.
+**Exhaustive Type Checking**: Use `@default never;` for a narrowed union variable, unwrapping a signal or function call with `@let` first. Use `@default never(expression);` to check a containing discriminated union.
 
 ```html
-@switch (state) { @case ('on') { ... } @case ('off') { ... } @default never; // Errors if a new
-state like 'standby' is added }
+@let currentState = state();
+@switch (currentState) {
+  @case ('on') { ... }
+  @case ('off') { ... }
+  @default never;
+}
 ```
 
 ## Core Concepts
 
 - **Host Element**: The DOM element that matches the component's selector.
 - **View**: The DOM rendered by the component's template inside the host element.
-- **Standalone**: By default, components are standalone (since Angular 19, `standalone: true` is default). For older versions, `standalone: true` must be explicit or the component must be part of an `NgModule`.
+- **Standalone**: Components are standalone by default. In older versions, `standalone: true` must be explicit or the component must be part of an `NgModule`.
 - **Component Tree**: Angular applications are structured as a tree of components, where each component can host child components.
-- **Component Naming**: Do not add suffixes the `Component` suffix for Component classes (e.g., AppComponent) unless the project has been configured to use that naming configuration.
+- **Component Naming**: Preserve the project's naming convention. Modern Angular CLI projects default to suffixless names such as `App`; legacy or configured projects may use `AppComponent`.

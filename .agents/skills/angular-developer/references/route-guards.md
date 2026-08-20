@@ -11,7 +11,7 @@ Route guards control whether a user can navigate to or leave a route.
 
 ## Creating a Guard
 
-Guards are typically functional since Angular 15.
+Prefer functional guards.
 
 ```ts
 export const authGuard: CanActivateFn = (route, state) => {

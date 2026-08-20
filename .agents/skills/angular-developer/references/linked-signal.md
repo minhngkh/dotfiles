@@ -56,4 +56,4 @@ export class ShippingMethodPicker {
 
 - Use `computed`: When state is **strictly** derived from other state and should never be manually updated.
 - Use `linkedSignal`: When state is derived from other state, but the user **must** be able to override or manually update it.
-- **Never** use `effect` to sync one piece of state to another. That is an anti-pattern. Use `computed` or `linkedSignal` instead.
+- Prefer `computed` or `linkedSignal` over an `effect` that propagates one piece of signal state into another.

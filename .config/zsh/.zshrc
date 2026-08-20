@@ -106,6 +106,9 @@ export s="./src/BGSVPayroll"
 
 export OC_SLIM_CONFIG="$HOME/.config/opencode-slim"
 
+export RUNTIME_LAZYGIT_BIN='$HOME/.nix-profile/bin/lazygit'
+export RUNTIME_FZF_BIN='$HOME/.nix-profile/bin/fzf'
+
 dpr=(--project PayrollApp.Infrastructure --startup-project PayrollApp.Web)
 ########
 
@@ -116,12 +119,13 @@ dpr=(--project PayrollApp.Infrastructure --startup-project PayrollApp.Web)
 alias cd="z"
 alias lg="lazygit"
 alias ldk="lazydocker"
-alias oc="opencode"
-alias ocd="opencode serve"
-alias oci="OH_MY_OPENCODE_SLIM_PRESET=plan opencode"
-alias ocid="OH_MY_OPENCODE_SLIM_PRESET=plan opencode --port 4097 serve"
-alias oc0="opencode attach http://localhost:4096 --dir ."
-alias oc1="opencode attach http://localhost:4097 --dir ."
+alias opencode="opencode2"
+# alias oc="opencode"
+# alias ocd="opencode serve"
+# alias oci="OH_MY_OPENCODE_SLIM_PRESET=plan opencode"
+# alias ocid="OH_MY_OPENCODE_SLIM_PRESET=plan opencode --port 4097 serve"
+# alias oc0="opencode attach http://localhost:4096 --dir ."
+# alias oc1="opencode attach http://localhost:4097 --dir ."
 # alias tf="terraform"
 # # alias kind="sudo kind"
 # # alias helm="sudo helm"
@@ -194,4 +198,4 @@ fi
 ########
 
 # bun completions
-# [ -s "/home/gmi4hc/.bun/_bun" ] && source "/home/gmi4hc/.bun/_bun"
+[ -s "/home/gmi4hc/.bun/_bun" ] && source "/home/gmi4hc/.bun/_bun"

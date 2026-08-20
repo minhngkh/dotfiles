@@ -4,7 +4,7 @@ Angular offers automatic and manual ways to provide dependencies to its Dependen
 
 ## Automatic Provision
 
-The most common way to provide a service is using `providedIn: 'root'` on an `@Injectable()`.
+Use `@Service()` for the typical root singleton. Use `@Injectable({providedIn: 'root'})` for older projects, constructor injection, or advanced scopes. An `InjectionToken` factory can also provide a value automatically.
 
 ### InjectionToken
 
@@ -46,6 +46,7 @@ You use the `providers` array when a service lacks `providedIn`, when you want a
     },
 
     // useExisting: Create an alias
+    NewLogger,
     {provide: OldLogger, useExisting: NewLogger},
 
     // multi: Provide multiple values for the same token as an array
@@ -59,7 +60,7 @@ export class Example {}
 
 - **Application Bootstrap**: Global singletons. Use for HTTP clients, logging, or app-wide config.
 - **Component/Directive**: Isolated instances. Use for component-specific state or forms. Services are destroyed when the component is destroyed.
-- **Route**: Feature-specific services loaded only with specific routes.
+- **Route**: Scoped to a route injector and available to its subtree, guards, and resolvers. Provider code is lazy only when the containing route configuration is lazy-loaded.
 
 ## Library Pattern: `provide*` functions
 

@@ -12,8 +12,7 @@ Effects are intended for syncing signal state to imperative, non-signal APIs.
 - Syncing state to `localStorage` or `sessionStorage`.
 - Performing custom rendering to a `<canvas>` or 3rd-party charting library.
 
-**CRITICAL RULE: DO NOT use effects to propagate state.**
-If you find yourself using `.set()` or `.update()` on a signal _inside_ an effect to keep two signals in sync, you are making a mistake. This causes `ExpressionChangedAfterItHasBeenChecked` errors and infinite loops. **Always use `computed()` or `linkedSignal()` for state derivation.**
+Use `computed()` or `linkedSignal()` for state derivation. Propagating state with `.set()` or `.update()` inside an effect can create unnecessary change-detection cycles, expression-changed errors, or loops.
 
 ## Basic Usage
 
@@ -65,8 +64,7 @@ export class Chart {
       },
       // 2. Write to the DOM (receives the result of the previous phase)
       write: (width) => {
-        // NEVER read from the DOM in the write phase.
-        setupChart(this.canvas().nativeElement, width);
+        setupChart(this.canvas().nativeElement, width());
       }
     });
   }

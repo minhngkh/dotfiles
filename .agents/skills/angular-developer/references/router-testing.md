@@ -1,87 +1,82 @@
-# Testing with the RouterTestingHarness
+# Router Testing
 
-When testing components that involve routing, it is crucial **not to mock the Router or related services**. Instead, use the `RouterTestingHarness`, which provides a robust and reliable way to test routing logic in an environment that closely mirrors a real application.
+Use Angular's real router configuration rather than mocking `Router`, `ActivatedRoute`, or other Angular router APIs. Fake application dependencies used by guards, resolvers, and routed components only when necessary.
 
-Using the harness ensures you are testing the actual router configuration, guards, and resolvers, leading to more meaningful tests.
+Preserve the project's configured test runner and Zone.js or zoneless mode.
 
-## Setting Up for Router Testing
+## RouterTestingHarness
 
-The `RouterTestingHarness` is the primary tool for testing routing scenarios. You also need to provide your test routes using the `provideRouter` function in your `TestBed` configuration.
-
-### Example Setup
+`RouterTestingHarness` creates a root component with a `RouterOutlet` and reduces setup for routed components.
 
 ```ts
+import {Component, inject} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {provideRouter} from '@angular/router';
+import {ActivatedRoute, provideRouter, Router} from '@angular/router';
 import {RouterTestingHarness} from '@angular/router/testing';
-import {Dashboard} from './dashboard.component';
-import {HeroDetail} from './hero-detail.component';
 
-describe('Dashboard Component Routing', () => {
+@Component({
+  template: '<h1>User Profile: {{ userId }}</h1>',
+})
+class UserProfile {
+  private readonly route = inject(ActivatedRoute);
+  readonly userId = this.route.snapshot.paramMap.get('id');
+}
+
+describe('UserProfile routing', () => {
   let harness: RouterTestingHarness;
 
   beforeEach(async () => {
-    // 1. Configure TestBed with test routes
     TestBed.configureTestingModule({
       providers: [
-        // Use provideRouter with your test-specific routes
-        provideRouter([
-          {path: '', component: Dashboard},
-          {path: 'heroes/:id', component: HeroDetail},
-        ]),
+        provideRouter([{path: 'user/:id', component: UserProfile}]),
       ],
     });
-
-    // 2. Create the RouterTestingHarness
     harness = await RouterTestingHarness.create();
+  });
+
+  it('reads route parameters', async () => {
+    const component = await harness.navigateByUrl('/user/123', UserProfile);
+
+    expect(component.userId).toBe('123');
+    expect(harness.routeNativeElement?.textContent).toContain('User Profile: 123');
+    expect(TestBed.inject(Router).url).toBe('/user/123');
   });
 });
 ```
 
-### Key Concepts
+## API Guidance
 
-1.  **`provideRouter([...])`**: Provide a test-specific routing configuration. This should include the routes necessary for the component-under-test to function correctly.
-2.  **`RouterTestingHarness.create()`**: Asynchronously creates and initializes the harness and performs an initial navigation to the root URL (`/`).
+- `RouterTestingHarness.create()` creates the harness without navigating.
+- `RouterTestingHarness.create('/path')` creates it and performs that initial navigation.
+- Create at most one harness per test. It requires TestBed teardown with `destroyAfterEach: true`, the normal default.
+- `harness.navigateByUrl(url)` waits for navigation and returns the activated component or `null`.
+- `harness.navigateByUrl(url, ComponentType)` also verifies the activated type.
+- `harness.routeNativeElement` accesses the active routed component's native element.
+- `harness.routeDebugElement` accesses its `DebugElement`.
+- Retrieve the live router with `TestBed.inject(Router)`.
+- `harness.detectChanges()` runs change detection on the harness fixture.
 
-## Writing Router Tests
+`RouterTestingHarness` does not expose `router` or `getHarness()` properties.
 
-Once the harness is created, you can use it to drive navigation and make assertions on the state of the router and the activated components.
+## Navigation Triggered By The UI
 
-### Example: Testing Navigation
+For a link, button, or component action, navigate to the source route, perform the interaction, and wait for the navigation it starts:
 
 ```ts
-it('should navigate to a hero detail when a hero is selected', async () => {
-  // 1. Navigate to the initial component and get its instance
-  const dashboard = await harness.navigateByUrl('/', Dashboard);
+const dashboard = await harness.navigateByUrl('/', Dashboard);
 
-  // Suppose the dashboard has a method to select a hero
-  const heroToSelect = {id: 42, name: 'Test Hero'};
-  dashboard.selectHero(heroToSelect);
+dashboard.selectHero({id: 42, name: 'Test Hero'});
+await harness.fixture.whenStable();
 
-  // Wait for stability after the action that triggers navigation
-  await harness.fixture.whenStable();
-
-  // 2. Assert on the URL
-  expect(harness.router.url).toEqual('/heroes/42');
-
-  // 3. Get the activated component after navigation
-  const heroDetail = await harness.getHarness(HeroDetail);
-
-  // 4. Assert on the state of the new component
-  expect(await heroDetail.componentInstance.hero.name).toBe('Test Hero');
-});
-
-it('should get the activated component directly', async () => {
-  // Navigate and get the component instance in one step
-  const dashboardInstance = await harness.navigateByUrl('/', Dashboard);
-
-  expect(dashboardInstance).toBeInstanceOf(Dashboard);
-});
+expect(TestBed.inject(Router).url).toBe('/heroes/42');
+expect(harness.routeNativeElement?.textContent).toContain('Test Hero');
 ```
 
-### Best Practices
+Await the navigation promise directly when the application API returns it. `navigateByUrl()` already waits for its own navigation; an additional `whenStable()` is only needed for separately triggered navigation or other asynchronous component work.
 
-- **Navigate with the Harness:** Always use `harness.navigateByUrl()` to simulate navigation. This method returns a promise that resolves with the instance of the activated component.
-- **Access the Router State:** Use `harness.router` to access the live router instance and assert on its state (e.g., `harness.router.url`).
-- **Get Activated Components:** Use `harness.getHarness(ComponentType)` to get an instance of a component harness for the currently activated routed component, or `harness.routeDebugElement` to get the `DebugElement`.
-- **Wait for Stability:** After performing an action that causes navigation, always `await harness.fixture.whenStable()` to ensure the routing is complete before making assertions.
+Use `RouterTestingHarness` for routed components, route parameters, guards, redirects, resolvers, and ordinary outlets. Create a custom host component for layouts such as named outlets that do not fit its single test outlet.
+
+## Official Sources
+
+- `https://angular.dev/guide/routing/testing`
+- `https://angular.dev/api/router/testing/RouterTestingHarness`

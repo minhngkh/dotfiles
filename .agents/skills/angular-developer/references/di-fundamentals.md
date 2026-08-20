@@ -13,11 +13,11 @@ Angular components, directives, and services automatically participate in DI.
 
 ## Services
 
-A **service** is the most common way to share data and functionality across an application. It is a TypeScript class decorated with `@Service()`.
+A **service** is a common way to share data and functionality. Use the `@Service()` decorator for root singletons that use `inject()`; use `@Injectable({providedIn: 'root'})` for older or constructor-injection code.
 
 ### Creating a Service
 
-Use the `@Service()` decorator to make the service a singleton available throughout the entire application. This is the recommended approach for most services.
+This example creates a tree-shakable root singleton:
 
 ```ts
 import {Service} from '@angular/core';
@@ -79,18 +79,18 @@ Valid places to call `inject()`:
 3.  **Route guards and resolvers** (which are executed in an injection context)
 4.  **Factory functions** used in providers
 
-```typescript
+```ts
 import {Component, Directive, Service, inject, ElementRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 // 1. In a Component (Field Initializer & Constructor)
-@Component(/* ... */)
+@Component({template: ''})
 export class Example {
-  private service1 = inject(MyService); // ✅ Field initializer
+  private service1 = inject(MyService); // Field initializer
 
   private service2: MyService;
   constructor() {
-    this.service2 = inject(MyService); // ✅ Constructor body
+    this.service2 = inject(MyService); // Constructor body
   }
 }
 
@@ -99,18 +99,14 @@ export class Example {
   /*...*/
 })
 export class MyDirective {
-  private element = inject(ElementRef); // ✅ Field initializer
+  private element = inject(ElementRef); // Field initializer
 }
 
 // 3. In a Service
 @Service()
 export class MyService {
-  private http = inject(HttpClient); // ✅ Field initializer
+  private http = inject(HttpClient); // Field initializer
 }
 
-// 4. In a Route Guard (Functional)
-export const authGuard = () => {
-  const auth = inject(AuthService); // ✅ Route Guard
-  return auth.isAuthenticated();
-};
+// Route guards and provider factories also run in an injection context.
 ```

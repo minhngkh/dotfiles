@@ -5,6 +5,14 @@
 
 ## Setting Up and Running E2E Tests
 
+Run the configured E2E target first:
+
+```shell
+ng e2e [project] [options]
+```
+
+If the workspace has no E2E target, Angular CLI can prompt for a supported package. Alternatively, add the framework selected by the user or project requirements.
+
 Add supported E2E frameworks to the project using `ng add`:
 
 - **Playwright:**
@@ -28,12 +36,6 @@ Add supported E2E frameworks to the project using `ng add`:
   ng add @puppeteer/ng-schematics
   ```
 
-Run E2E tests:
-
-```shell
-ng e2e [project] [options]
-```
-
 ## Custom & Enterprise Testing Tools
 
-For custom enterprise runners (e.g., Katalon Studio, TestCafe, Selenium), define execution commands in `package.json` scripts.
+For a custom runner, define a `package.json` script. To run it through `ng e2e`, also configure an `e2e` target with a compatible builder; a package script alone is a separate execution path.

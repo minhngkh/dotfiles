@@ -15,7 +15,7 @@ Components are bundled into the initial JavaScript payload and are available imm
 
 ## Lazy Loading
 
-Components or routes are loaded only when the user navigates to them. This creates separate JavaScript "chunks".
+Components or routes are split into separate JavaScript chunks loaded on demand or by a configured preloading strategy.
 
 ### Lazy Loading Components
 
@@ -24,7 +24,7 @@ Use `loadComponent` to fetch the component on demand.
 ```ts
 {
   path: 'admin',
-  loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent)`,
+  loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
 }
 ```
 
@@ -57,5 +57,5 @@ Loader functions run within the **injection context** of the current route. This
 
 ## Recommendation
 
-- Use **Eager Loading** for the primary landing pages.
-- Use **Lazy Loading** for all other feature areas to keep the initial bundle small.
+- Eager-load routes needed for initial rendering when an extra request would hurt the critical path.
+- Lazy-load feature areas that are not needed initially. Choose a preloading strategy when later navigation latency matters.

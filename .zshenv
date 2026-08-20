@@ -39,6 +39,16 @@ export PATH="$PATH:$HOME/go"
 # rust
 . "$HOME/.cargo/env"
 
+# pnpm
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME/bin:$PATH"
+# case ":$PATH:" in
+#   *":$PNPM_HOME/bin:"*) ;;
+#   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+# esac
+
 # misc
 export NODE_USE_ENV_PROXY=1
 export T3CODE_TELEMETRY_ENABLED=false

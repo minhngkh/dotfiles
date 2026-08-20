@@ -20,13 +20,7 @@ Environment files define configuration values that are replaced at build time.
 > Never store sensitive information like API keys, secrets, or credentials in environment files.
 > These values can be easily accessed by users.
 
-Generate environment files using the CLI:
-
-```bash
-ng generate environments
-```
-
-This creates environment-specific files such as:
+Create environment-specific files such as:
 
 ```ts
 // environment.ts
@@ -64,13 +58,13 @@ In some scenarios, applications need to load configuration at runtime instead of
 
 This allows the same build artifact to be deployed across multiple environments without rebuilding.
 
-A common approach is to load a JSON configuration file from the `assets` folder during application
-initialization.
+A common approach is to load a public JSON file during application initialization. Modern workspaces use `public/`; preserve an existing `src/assets` mapping when the workspace configures one.
 
 ### Example
 
+`public/config.json`:
+
 ```json
-// src/assets/config.json
 {
   "apiUrl": "https://api.example.com"
 }
@@ -79,17 +73,18 @@ initialization.
 Load the configuration before the application starts:
 
 ```ts
-import {Service, inject} from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {tap} from 'rxjs';
 
-@Service()
+@Injectable({providedIn: 'root'})
 export class AppConfigService {
   private config!: {apiUrl: string};
 
   private readonly http = inject(HttpClient);
 
   loadConfig() {
-    return this.http.get<AppConfig>('/assets/config.json').pipe(
+    return this.http.get<{apiUrl: string}>('/config.json').pipe(
       tap((data) => {
         this.config = data;
       }),
@@ -105,15 +100,16 @@ export class AppConfigService {
 Register the loader during application bootstrap:
 
 ```ts
-import {provideAppInitializer, inject} from '@angular/core';
+import {ApplicationConfig, inject, provideAppInitializer} from '@angular/core';
 
-provideAppInitializer(() => {
-  const config = inject(AppConfigService);
-  return config.loadConfig();
-});
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAppInitializer(() => inject(AppConfigService).loadConfig()),
+  ],
+};
 ```
 
-This ensures configuration is available before the application renders.
+This ensures configuration is available before the application renders. Add `provideHttpClient()` during bootstrap on Angular versions that do not provide `HttpClient` by default.
 
 > Runtime configuration is an advanced pattern and is not required for most applications.
 

@@ -4,13 +4,9 @@ Services in Angular are reusable pieces of code that handle data fetching, busin
 
 ## Creating a Service
 
-You can generate a service using the Angular CLI:
+Preserve the workspace's suffix conventions — modern workspaces use suffixless files, some projects use `.service` filenames.
 
-```bash
-ng generate service my-data
-```
-
-Or you can manually create a TypeScript class and decorate it with `@Service()`.
+Use `@Service()` for a typical root singleton that uses `inject()`:
 
 ```ts
 import {Service} from '@angular/core';
@@ -31,15 +27,26 @@ export class BasicDataStore {
 
 ### The `@Service` decorator
 
-Using `@Service` is the recommended approach for most services. It tells Angular to:
+`@Service` tells Angular to:
 
 - **Create a single instance (singleton)** for the entire application.
 - **Make it available everywhere** automatically, without needing to list it in any `providers` array.
 - **Enable tree-shaking**, meaning the service is only included in the final JavaScript bundle if it is actually injected somewhere.
 
+For older projects, or when constructor injection or advanced `providedIn` scopes are required, use `@Injectable`:
+
+```ts
+import {Injectable} from '@angular/core';
+
+@Injectable({providedIn: 'root'})
+export class BasicDataStore {}
+```
+
+Preserve the decorator used by the installed Angular version unless an upgrade was requested.
+
 #### The `autoProvided` option
 
-If you don't want to create a singleton of your service, you can set `@Service({autoProvided: false})` and declare the service a `providers` array.
+Use `@Service({autoProvided: false})` when a service should never be automatically root-provided. Then register it in the appropriate `providers` array.
 
 ## Injecting a Service
 
@@ -49,7 +56,7 @@ Once a service is created, you can inject it into components, directives, or oth
 
 ```ts
 import {Component, inject} from '@angular/core';
-import {BasicDataStore} from './basic-data-store.service';
+import {BasicDataStore} from './basic-data-store';
 
 @Component({
   selector: 'app-example',
@@ -71,8 +78,8 @@ export class Example {
 Services can inject other services in the exact same way.
 
 ```ts
-import {Injectable, inject} from '@angular/core';
-import {AdvancedDataStore} from './advanced-data-store.service';
+import {Service, inject} from '@angular/core';
+import {AdvancedDataStore} from './advanced-data-store';
 
 @Service()
 export class BasicDataStore {
@@ -92,6 +99,6 @@ export class BasicDataStore {
 
 While `@Service` covers most scenarios, you may sometimes need:
 
-- **Component-specific instances**: If a component needs its own isolated instance of a service, provide it directly in the component's `@Component({ providers: [MyService] })` array and set the `autoProvided: false` option: `@Service({autoProvided: false})`
+- **Component-specific instances**: Provide the service in `@Component({providers: [MyService]})`. Set `autoProvided: false` only when it should never also be available from the root injector.
 - **Factory providers**: For dynamic creation.
 - **Value providers**: For injecting configuration objects.

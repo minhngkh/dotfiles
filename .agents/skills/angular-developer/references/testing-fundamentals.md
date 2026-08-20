@@ -1,63 +1,82 @@
 # Testing Fundamentals
 
-This guide covers the fundamental principles and practices for writing unit tests in this repository, which uses Vitest as the test runner.
+Use Angular's testing utilities with the test runner and change-detection mode already configured by the project.
 
-## Core Philosophy: Zoneless & Async-First
+## Preserve Project Configuration
 
-This project follows a modern, zoneless testing approach. State changes schedule updates asynchronously, and tests must account for this.
+Before changing tests, inspect `angular.json`, package dependencies, test setup files, and nearby specs.
 
-**Do NOT** use `fixture.detectChanges()` to manually trigger updates.
-**ALWAYS** use the "Act, Wait, Assert" pattern:
+- Existing projects may be configured with Karma/Jasmine, Vitest, or another runner.
+- Keep the existing runner, matchers, spies, mocks, and fake-timer APIs unless the task is an explicit migration.
+- Keep the existing Zone.js or zoneless setup. Do not add or remove `zone.js`, `zone.js/testing`, `provideZoneChangeDetection()`, or `provideZonelessChangeDetection()` incidentally.
+- `TestBed` uses Zone-based change detection when Zone.js is loaded by test polyfills. Without Zone.js, it runs zoneless by default.
 
-1.  **Act:** Update state or perform an action (e.g., set a component input, click a button).
-2.  **Wait:** Use `await fixture.whenStable()` to allow the framework to process the scheduled update and render the changes.
-3.  **Assert:** Verify the outcome.
+Prefer native `async` and `await` for asynchronous tests. Use `fakeAsync`, runner-specific fake timers, or runner-specific mocking APIs only when the project is configured for them.
 
-### Basic Test Structure Example
+## TestBed And ComponentFixture
+
+`TestBed` configures an Angular test environment. Use `imports` for standalone dependencies, `providers` for injected dependencies, and `declarations` only for non-standalone declarations. Configuration is optional when the component needs no additional setup.
+
+`TestBed.createComponent()` returns a `ComponentFixture`:
+
+- `fixture.componentInstance` accesses the component instance.
+- `fixture.nativeElement` accesses the root native element.
+- `fixture.debugElement` provides Angular-aware queries and access to the element injector.
+- `fixture.componentRef.setInput()` updates an input through Angular.
+
+Configure `TestBed` before the first call to `createComponent()` in a test.
+
+## Rendering And Asynchronous Work
+
+`TestBed.createComponent()` does not synchronously complete initial data binding.
+
+Use `await fixture.whenStable()` when Angular scheduled rendering or other asynchronous work. In zoneless tests, update state through a change-notifying API such as a template-read signal, `componentRef.setInput()`, a bound event, `AsyncPipe`, or `ChangeDetectorRef.markForCheck()`.
+
+`fixture.detectChanges()` remains supported and is useful when a test intentionally needs an immediate change-detection cycle. Prefer scheduled application-like updates when possible, but preserve existing suites that consistently use manual change detection.
+
+When changing a native form control, set its value and dispatch the corresponding DOM event so Angular observes the change.
+
+## Example
 
 ```ts
+import {Component, signal} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {MyComponent} from './my.component';
 
-describe('MyComponent', () => {
-  let component: MyComponent;
-  let fixture: ComponentFixture<MyComponent>;
-  let h1: HTMLElement;
+@Component({
+  template: '<h1>{{ title() }}</h1>',
+})
+class TestComponent {
+  readonly title = signal('Default Title');
+}
+
+describe('TestComponent', () => {
+  let fixture: ComponentFixture<TestComponent>;
+  let component: TestComponent;
+  let heading: HTMLHeadingElement;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-
-    // Create the component fixture
-    fixture = TestBed.createComponent(MyComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    h1 = fixture.nativeElement.querySelector('h1');
+    heading = fixture.nativeElement.querySelector('h1');
   });
 
-  it('should display the default title', async () => {
-    // ACT: (Implicit) Component is created with default state.
-    // WAIT for initial data binding.
+  it('displays the initial title', async () => {
     await fixture.whenStable();
-    // ASSERT the initial state.
-    expect(h1.textContent).toContain('Default Title');
+    expect(heading.textContent).toContain('Default Title');
   });
 
-  it('should display a different title after a change', async () => {
-    // ACT: Change the component's title property.
-    component.title.set('New Test Title');
-
-    // WAIT for the asynchronous update to complete.
+  it('updates the displayed title', async () => {
+    component.title.set('New Title');
     await fixture.whenStable();
-
-    // ASSERT the DOM has been updated.
-    expect(h1.textContent).toContain('New Test Title');
+    expect(heading.textContent).toContain('New Title');
   });
 });
 ```
 
-## TestBed and ComponentFixture
+Use the assertion and mocking syntax already configured in the project.
 
-- **`TestBed`**: The primary utility for creating a test-specific Angular module. Use `TestBed.configureTestingModule({...})` in your `beforeEach` to declare components, provide services, and set up imports needed for your test.
-- **`ComponentFixture`**: A handle on the created component instance and its environment.
-  - `fixture.componentInstance`: Access the component's class instance.
-  - `fixture.nativeElement`: Access the component's root DOM element.
-  - `fixture.debugElement`: An Angular-specific wrapper around the `nativeElement` that provides safer, platform-agnostic ways to query the DOM (e.g., `debugElement.query(By.css('p'))`).
+## Official Sources
+
+- `https://angular.dev/guide/testing`
+- `https://angular.dev/guide/testing/components-basics`
+- `https://angular.dev/guide/zoneless#testing-and-debugging`

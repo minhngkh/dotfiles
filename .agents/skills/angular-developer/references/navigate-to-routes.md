@@ -53,7 +53,7 @@ this.router.navigate(['edit'], { relativeTo: this.route });
 
 ### `router.navigateByUrl()`
 
-Uses a string path. Ideal for absolute navigation or full URLs.
+Uses a complete Angular application router URL. For another origin, use a browser navigation API such as `location.assign()`.
 
 ```ts
 this.router.navigateByUrl('/products/123?view=details');

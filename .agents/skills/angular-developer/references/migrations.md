@@ -1,6 +1,6 @@
 # Automatic Migrations & Code Modernization
 
-When tasked with refactoring or modernizing an existing codebase, always prefer using the official automated schematics available in `@angular/core` over manual text replacement.
+When a requested modernization has an official schematic in the installed Angular version, prefer it over manual text replacement. Review its diff before adding manual follow-up changes.
 
 ## Discovering Migrations
 
@@ -23,8 +23,9 @@ Use the following commands to apply specific syntax updates. You can scope these
 
 ## Specialized Workflow: Migrating to Standalone
 
-The Standalone migration is an interactive, multi-step refactoring. You **MUST** perform this in three discrete stages, verifying that the application builds and runs correctly after each stage completes:
+The Standalone migration is an interactive, three-stage refactoring. Verify the relevant tests and build after each stage:
 
 1. **Phase 1**: Run `ng generate @angular/core:standalone` and select the option to **Convert all components, directives, and pipes to standalone**.
 2. **Phase 2**: Verify the build with `ng build`. Run the command again and select **Remove unnecessary NgModule classes**.
 3. **Phase 3**: Verify the build with `ng build`. Run the final pass and select **Bootstrap the project using standalone APIs**.
+4. **Final verification**: Run the relevant tests and `ng build`, then review the complete migration diff.

@@ -1,9 +1,8 @@
 # Angular Animations
 
-When animating elements in Angular, **first analyze the project's Angular version** in `package.json`.
-For modern applications (**Angular v20.2 and above**), prefer using native CSS with `animate.enter` and `animate.leave`. For older applications, you may need to use the deprecated `@angular/animations` package.
+Prefer native CSS with `animate.enter` and `animate.leave` for element animations. Fall back to the deprecated `@angular/animations` package only in older projects that already use it.
 
-## 1. Native CSS Animations (v20.2+ Recommended)
+## Native CSS Animations
 
 Modern Angular provides `animate.enter` and `animate.leave` to animate elements as they enter or leave the DOM. They apply CSS classes at the appropriate times.
 
@@ -64,13 +63,12 @@ You can bind to `(animate.enter)` and `(animate.leave)` to call functions or use
 import { AnimationCallbackEvent } from '@angular/core';
 
 onLeave(event: AnimationCallbackEvent) {
-  // Custom animation logic here
-  // CRITICAL: You MUST call animationComplete() when done so Angular removes the element!
+  // Call animationComplete() when custom leave work finishes so Angular removes the element.
   event.animationComplete();
 }
 ```
 
-## 2. Advanced CSS Animations
+## Advanced CSS Animations
 
 CSS offers robust tools for advanced animation sequences.
 
@@ -124,9 +122,9 @@ const animations = element.getAnimations();
 animations.forEach((anim) => anim.pause());
 ```
 
-## 3. Legacy Animations DSL (Deprecated)
+## Legacy Animations DSL (Deprecated)
 
-For older projects (pre v20.2 or where `@angular/animations` is already heavily used), you use the component metadata DSL.
+For older projects where `@angular/animations` is already heavily used, you use the component metadata DSL.
 
 **Important:** Do not mix legacy animations and `animate.enter`/`leave` in the same component.
 

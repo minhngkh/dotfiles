@@ -1,6 +1,6 @@
 # Route Transition Animations
 
-Angular Router supports the browser's **View Transitions API** for smooth visual transitions between routes.
+Angular Router offers developer-preview integration with the browser's **View Transitions API**. Confirm the installed Router API before adopting it and treat it as progressive enhancement.
 
 ## Enabling View Transitions
 
@@ -43,7 +43,7 @@ Use `onViewTransitionCreated` to skip transitions or customize behavior based on
 withViewTransitions({
   onViewTransitionCreated: ({transition, from, to}) => {
     // Skip animation for specific routes
-    if (to.url === '/no-animation') {
+    if (to.routeConfig?.path === 'no-animation') {
       transition.skipTransition();
     }
   },

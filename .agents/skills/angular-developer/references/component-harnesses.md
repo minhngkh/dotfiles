@@ -1,12 +1,12 @@
 # Testing with Component Harnesses
 
-Component harnesses are the standard, preferred way to interact with components in tests. They provide a robust, user-centric API that makes tests less brittle and easier to read by insulating them from changes to a component's internal DOM structure.
+Component harnesses provide a stable, user-oriented testing API for shared UI widgets and component libraries. Use a component's supported harness when one exists; direct DOM interaction remains appropriate for application-specific markup.
 
 ## Why Use Harnesses?
 
 - **Robustness:** Tests don't break when you refactor a component's internal HTML or CSS classes.
 - **Readability:** Tests describe interactions from a user's perspective (e.g., `button.click()`, `slider.getValue()`) instead of through DOM queries (`fixture.nativeElement.querySelector(...)`).
-- **Reusability:** The same harness can be used in both unit tests and E2E tests.
+- **Reusability:** A harness implementation can run in multiple environments when an adapter exists. The CDK includes TestBed and Selenium WebDriver environments.
 
 Angular Material provides a test harness for every component in its library.
 
@@ -17,6 +17,8 @@ The `TestbedHarnessEnvironment` is the entry point for using harnesses in unit t
 ### Example: Testing with a `MatButtonHarness`
 
 ```ts
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {MatButtonHarness} from '@angular/material/button/testing';
 import {MyButtonContainerComponent} from './my-button-container.component';
@@ -52,6 +54,8 @@ describe('MyButtonContainerComponent', () => {
 
 2.  **`loader.getHarness(HarnessClass)`**: Asynchronously finds and returns a harness instance for the first matching component.
 
-3.  **`HarnessClass.with({ ... })`**: Many harnesses provide a static `with` method that returns a `HarnessPredicate`. This allows you to filter and find components based on their properties, like text, selector, or disabled state. Always use this to precisely target the component you want to test.
+3.  **`HarnessClass.with({ ... })`**: Many harnesses provide a static `with` method that returns a `HarnessPredicate`. Use it when a query needs to filter by text, selector, state, or another supported property.
 
-4.  **Harness API:** Once you have a harness instance, use its methods (e.g., `.click()`, `.getText()`, `.getValue()`) to interact with the component. These methods automatically handle waiting for async operations and change detection.
+4.  **Harness API:** Harness methods are asynchronous. TestBed harnesses run change detection around reads and interactions; waiting for work outside Angular depends on the environment and test setup.
+
+Use `TestbedHarnessEnvironment.documentRootLoader(fixture)` for overlay content attached to `document.body`. Use `harnessForFixture()` when testing a harness rooted at the fixture host itself.

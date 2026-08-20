@@ -14,16 +14,16 @@ An injection context is automatically available in:
 ```ts
 @Component({...})
 export class Example {
-  // ✅ Valid: Field initializer
+  // Valid: field initializer
   private router = inject(Router);
 
   constructor() {
-    // ✅ Valid: Constructor
+    // Valid: constructor
     const http = inject(HttpClient);
   }
 
   onClick() {
-    // ❌ Invalid: Not an injection context
+    // Invalid: methods do not run in an injection context automatically.
     // const auth = inject(AuthService);
   }
 }
@@ -34,15 +34,15 @@ export class Example {
 If you need to run a function within an injection context (often needed for dynamic component creation or testing), use `runInInjectionContext`. This requires access to an existing injector (like `EnvironmentInjector` or `Injector`).
 
 ```ts
-import {inject, EnvironmentInjector, runInInjectionContext, Service} from '@angular/core';
+import {EnvironmentInjector, Injectable, inject, runInInjectionContext} from '@angular/core';
 
-@Service()
+@Injectable({providedIn: 'root'})
 export class MyService {
   private injector = inject(EnvironmentInjector);
 
   doSomethingDynamic() {
     runInInjectionContext(this.injector, () => {
-      // ✅ Now valid to use inject() here
+      // This callback now runs in the supplied injection context.
       const router = inject(Router);
     });
   }

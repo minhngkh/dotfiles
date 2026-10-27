@@ -6,7 +6,9 @@ name = "vesper"
 auto_switch = false
 [ui]
 agent_panel_sort = "priority"
+copy_on_select = false
 
+status_indicators = "dots"
 [experimental]
 kitty_graphics = true
 
@@ -24,11 +26,11 @@ rows = [
 
 # Override herdr's built-in "new worktree" key (prefix+shift+g) with worktrunk's
 # default-branch switch/create picker:
-# [[keys.command]]
-# key = "prefix+shift+g"
-# type = "plugin_action"
-# command = "worktrunk.open"
-# description = "Worktree: switch / create from default branch"
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
 
 # Optional: bind current-branch creation separately.
 [[keys.command]]
@@ -49,11 +51,11 @@ type = "plugin_action"
 command = "herdr-lazygit.open"
 description = "open lazygit"
 
-[[keys.command]]              # lazygit: open in its own tab
-key = "prefix+shift+g"
-type = "plugin_action"
-command = "herdr-lazygit.open-tab"
-description = "open lazygit in new tab"
+# [[keys.command]]              # lazygit: open in its own tab
+# key = "prefix+shift+g"
+# type = "plugin_action"
+# command = "herdr-lazygit.open-tab"
+# description = "open lazygit in new tab"
 
 [[keys.command]]
 key = "prefix+m"
@@ -99,7 +101,10 @@ description = "command bar"
 
 # --- added by Agent Usage (usagebar) setup ---
 [ui.toast]
-delivery = "herdr" # or "system" / "terminal"
+delivery = "system"
 
 [ui.toast.herdr]
 position = "bottom-left"
+
+[ui.sound]
+enabled = true

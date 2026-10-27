@@ -160,4 +160,8 @@
     "key": "ctrl+k ctrl+f",
     "command": "editor.action.formatChanges"
   },
+  {
+    "key": "ctrl+alt+w",
+    "command": "git.openWorktree"
+  },
 ]

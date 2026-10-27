@@ -414,7 +414,7 @@
   "gitlens.statusBar.enabled": false,
   "gitlens.hovers.enabled": false,
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -448,6 +448,9 @@
   "workbench.experimental.modernUI": true,
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
+  },
+  "files.exclude": {
+    "**/.worktrees/": true
   },
   // "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [
   //   {

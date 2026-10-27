@@ -1,2 +1,11 @@
 #!/bin/sh
+# Force the system (non-Nix) toolchain for builds.
+# The .NET NativeAOT/ILCompiler SDK does NOT honor $CC/$CXX (it resolves plain
+# `gcc`/`ld`/`objcopy` from PATH after probing clang), and the Nix gcc on this
+# box passes a liblto_plugin.so built against glibc >= 2.38 to the system
+# linker, which fails on Ubuntu 22.04 (glibc 2.35):
+#   ld.bfd: ...liblto_plugin.so: version `GLIBC_2.38' not found
+# Prepending /usr/bin ensures gcc, ld.bfd and objcopy all come from the
+# system toolchain instead.
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 CC=/usr/bin/gcc CXX=/usr/bin/g++ "$@"

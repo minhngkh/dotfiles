@@ -24,12 +24,6 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "white",
-          "style": "plain",
-          "template": "<lightWhite></> <white>{{.Context}}</>{{if .Namespace}}::<white>{{.Namespace}}</>{{end}} <lightWhite>|</> ",
-          "type": "kubectl"
-        },
-        {
           "type": "session",
           "style": "plain",
           "foreground": "lightYellow",

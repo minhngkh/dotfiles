@@ -10,5 +10,10 @@ prepend_keymap = [
 
 [input]
 prepend_keymap = [
-  	{ on = "<Esc>", run  = "close", desc = "Cancel input" },
+	{ on = "<Esc>", run  = "close", desc = "Cancel input" },
+]
+
+[opener]
+edit = [
+    { run = 'micro %s', block = true, for = "unix" },
 ]

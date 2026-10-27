@@ -96,15 +96,18 @@ export PF_INFO="ascii title os kernel uptime pkgs shell wm"
 
 WT_REPOS=(
   # "sat (be):~/work/sat/repo:src/backend/SAT-Api/:wt"
+  "fabrik| services:~/work/fabrik/repo/services::wt"
+  "fabrik| bpv:~/work/fabrik/repo/web-bpv::wt"
+  "fabrik| ui:~/work/fabrik/repo/web-ui::wt"
+  "fabrik| core:~/work/fabrik/repo/web-core::wt"
+  "fabrik| bpc:~/work/fabrik/repo/web-bpc::wt"
   "sat:~/work/sat/repo::wt"
   "payroll:~/work/payroll/repo:src/BGSVPayroll/:wt"
   "~/.config/hypr/"
   "~/.config/opencode/"
 )
 
-export s="./src/BGSVPayroll"
-
-export OC_SLIM_CONFIG="$HOME/.config/opencode-slim"
+export s="~/work/fabrik/repo"
 
 export RUNTIME_LAZYGIT_BIN='$HOME/.nix-profile/bin/lazygit'
 export RUNTIME_FZF_BIN='$HOME/.nix-profile/bin/fzf'
@@ -119,8 +122,7 @@ dpr=(--project PayrollApp.Infrastructure --startup-project PayrollApp.Web)
 alias cd="z"
 alias lg="lazygit"
 alias ldk="lazydocker"
-alias opencode="opencode2"
-# alias oc="opencode"
+alias oc="opencode"
 # alias ocd="opencode serve"
 # alias oci="OH_MY_OPENCODE_SLIM_PRESET=plan opencode"
 # alias ocid="OH_MY_OPENCODE_SLIM_PRESET=plan opencode --port 4097 serve"

@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
-exec /usr/bin/code --password-store=gnome-libsecret "$@" --enable-wayland-ime
+exec /home/gmi4hc/.local/bin/system-gui-app \
+  /usr/bin/code --password-store=gnome-libsecret "$@" --enable-wayland-ime

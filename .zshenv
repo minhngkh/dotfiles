@@ -66,4 +66,12 @@ export PATH="$PATH:/opt/osd/proxy2"
 
 source $HOME/.env.sh
 
+# reset
+
+# export http_proxy=
+# export https_proxy=
+# export HTTP_PROXY=
+# export HTTPS_PROXY=
+# export ALL_PROXY=
+
 fpath=($C_NIX_COMPLETIONS ~/.config/zsh/completions $fpath)

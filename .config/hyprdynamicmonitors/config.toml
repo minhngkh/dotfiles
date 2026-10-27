@@ -1,5 +1,5 @@
 [general]
-destination = "$HOME/.config/hypr/monitors.conf"
+destination = "$HOME/.config/hypr/monitors.generated.conf"
 
 [power_events]
 
@@ -63,4 +63,22 @@ monitor_tag = "monitor2"
 
 [[profiles.three-monitors.conditions.required_monitors]]
 description = "HP Inc. HP P24h G4 3CM2271FP6"
+monitor_tag = "monitor1"
+
+
+[profiles.new-3-desktop]
+config_file = "/home/gmi4hc/.config/hyprdynamicmonitors/hyprconfigs/new-3-desktop.go.tmpl"
+config_file_type = "template"
+[profiles.new-3-desktop.conditions]
+
+[[profiles.new-3-desktop.conditions.required_monitors]]
+description = "BOE 0x0A35"
+monitor_tag = "monitor0"
+
+[[profiles.new-3-desktop.conditions.required_monitors]]
+description = "HP Inc. HP P24h G5 3CM5120YQ9"
+monitor_tag = "monitor2"
+
+[[profiles.new-3-desktop.conditions.required_monitors]]
+description = "HP Inc. HP 324ph 6CM5202DSB"
 monitor_tag = "monitor1"

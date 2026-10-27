@@ -1,6 +1,8 @@
 words = [
     "FCM",
     "MSAL",
+    "Unsubmitted",
+    "autodocs",
     "cref",
     "dto",
     "getters",
@@ -8,5 +10,7 @@ words = [
     "maxlength",
     "minlength",
     "mouseleave",
+    "ngp",
+    "overscan",
     "ppe",
 ]

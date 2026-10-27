@@ -4,3 +4,4 @@
 # .scratch/
 .worktrees/
 .config/wt.toml
+.humanlayer/

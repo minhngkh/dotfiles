@@ -37,7 +37,7 @@ parameters = ""
 "ducker" = "[term_h_large] -e ducker"
 "bpytop" = "[term_h_large] -e btop"
 # "xwininfo" = "[float_term] sh -c 'xwininfo; read'"
-"View keybinds" = "[term_h_mid] -e micro $HOME/.config/hypr/hyprland/keybinds.conf"
+"View keybinds" = "[term_h_mid] -e micro $HOME/.config/hypr/hyprland.lua"
 # "View install.txt" = "[float_term] micro $HOME/install.txt"
 
 "Hyprland socket" = 'kitty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
@@ -53,4 +53,3 @@ parameters = ""
     ] },
     "sleep 0.2; hyprpicker --format [format] | wl-copy", # sleep to let the menu close before the picker opens
 ]
-

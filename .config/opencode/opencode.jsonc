@@ -2,12 +2,65 @@
   "$schema": "https://opencode.ai/config.json",
   "plugins": [
     {
-      "package": "@plannotator/opencode@0.27.4",
+      "package": "@plannotator/opencode@0.28.14",
       "options": {
         "workflow": "manual",
       },
     },
   ],
+  "providers": {
+    "openai": {
+      "settings": { "compaction": { "type": "native", "buffer": 300000 } },
+      "models": {
+        "gpt-6.1-sol": { "settings": { "compaction": { "type": "native", "buffer": 100000 } } },
+      },
+    },
+    "devmate": {
+      "name": "Bosch Devmate",
+      "env": ["DEVMATE_API_KEY"],
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "https://devmate.bosch.com/api/v3",
+        "apiKey": "{env:DEVMATE_API_KEY}",
+      },
+      "models": {
+        "gpt-5.6-luna": {
+          "name": "GPT-5.6 Luna",
+          "variants": [
+            {
+              "id": "low",
+              "settings": { "reasoningEffort": "low" },
+            },
+            {
+              "id": "medium",
+              "settings": { "reasoningEffort": "medium" },
+            },
+            {
+              "id": "high",
+              "settings": { "reasoningEffort": "high" },
+            },
+          ],
+        },
+        "gpt-5.6-sol": {
+          "name": "GPT-5.6 Sol",
+          "variants": [
+            {
+              "id": "low",
+              "settings": { "reasoningEffort": "low" },
+            },
+            {
+              "id": "medium",
+              "settings": { "reasoningEffort": "medium" },
+            },
+            {
+              "id": "high",
+              "settings": { "reasoningEffort": "high" },
+            },
+          ],
+        },
+      },
+    },
+  },
   "mcp": {
     "servers": {
       "context7": {
@@ -17,27 +70,120 @@
           "Authorization": "Bearer {env:CONTEXT7_API_KEY}",
         },
       },
+      "ng-primitives": {
+        "type": "local",
+        "command": ["ngp-mcp"],
+      },
+      // "jev-browser": {
+      //   "type": "local",
+      //   "command": [
+      //     "npx",
+      //     "-y",
+      //     "-p",
+      //     "jev-browser",
+      //     "jev-browser-mcp"
+      //   ],
+      //   "environment": {
+      //     "TYPESAFE_API_KEY": "apikey_21851d39eb83af904409ba3439a723edba24_1907b997a4c89842a28314e5764c4fb1a68e4a1228e75b08dfce3d5caed83079",
+      //     "JEV_BROWSER_HEADED": "1"
+      //   }
+      // }
     },
+    //   "azure-devops": {
+    //     "disabled": true,
+    //     "type": "local",
+    //     "protocol": "auto",
+    //     "command": [
+    //       "npx",
+    //       "@azure-devops/mcp@latest",
+    //       "prodbgsw",
+    //       "--authentication",
+    //       "azcli",
+    //     ],
+    //     "environment": {
+    //       "PERSONAL_ACCESS_TOKEN": "{env:ADO_MCP_PAT_BASIC}",
+    //     },
+    //   },
+    // },
   },
   "websearch": {
     "provider": "random",
   },
   "agents": {
+    // "build": {
+    //   "mode": "all",
+    // },
     "explore": {
-      "model": "opencode-go/mimo-v2.5",
+      "model": "github-copilot/gpt-6-luna#low",
     },
     "general": {
-      "model": "opencode-go/mimo-v2.5",
+      "model": "github-copilot/gpt-6-luna#low",
+      "permissions": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "allow",
+        },
+        {
+          "action": "subagent",
+          "resource": "*",
+          "effect": "allow",
+        },
+        {
+          "action": "question",
+          "resource": "*",
+          "effect": "allow",
+        },
+      ],
     },
   },
-  "references": {
-    "oh-my-opencode-slim": {
-      "repository": "alvinunreal/oh-my-opencode-slim",
-      "branch": "master",
+  "permissions": [
+    {
+      "action": "external_directory",
+      "resource": "~/.agents/*",
+      "effect": "allow",
     },
-    "pi-subagents": {
-      "repository": "nicobailon/pi-subagents",
+    {
+      "action": "read",
+      "resource": "~/.agents/*",
+      "effect": "allow",
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.config/opencode/*",
+      "effect": "allow",
+    },
+    {
+      "action": "read",
+      "resource": "~/.config/opencode/*",
+      "effect": "allow",
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.local/bin/*",
+      "effect": "allow",
+    },
+    {
+      "action": "read",
+      "resource": "~/.local/bin/*",
+      "effect": "allow",
+    },
+  ],
+  "experimental": {
+    "subagent_depth": 3,
+  },
+  "references": {
+    "orca": {
+      "repository": "stablyai/orca",
       "branch": "main",
     },
+    //   "oh-my-opencode-slim": {
+    //     "repository": "alvinunreal/oh-my-opencode-slim",
+    //     "branch": "master",
+    //   },
+    //   "pi-subagents": {
+    //     "repository": "nicobailon/pi-subagents",
+    //     "branch": "main",
+    //   },
   },
 }

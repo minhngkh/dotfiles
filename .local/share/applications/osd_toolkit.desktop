@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=OSD Toolkit (wrapped)
+Name=OSD Toolkit (local)
 Comment=Toolkit application for OSD
 GenericName=osd_toolkit_wrapped
 Exec=/home/gmi4hc/.local/bin/osd-toolkit

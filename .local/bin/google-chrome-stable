@@ -1,4 +1,4 @@
-exec /usr/bin/google-chrome-stable \
+exec /home/gmi4hc/.local/bin/system-gui-app /usr/bin/google-chrome-stable \
 	--password-store=gnome-libsecret \
 	--ozone-platform-hint=wayland \
 	--ignore-gpu-blocklist \

@@ -16,6 +16,7 @@
     "group_by": "staging"
   },
   "git": {
+    "hunk_style": "staged_hollow",
     "inline_blame": {
       "location": "status_bar"
     }
@@ -46,7 +47,7 @@
     },
     "provider": "copilot"
   },
-  "file_scan_exclusions": ["**/bin/**", "**/obj/**"],
+  "file_scan_exclusions": ["**/bin/**", "**/obj/**", "**/.worktrees", "..."],
   "agent": {
     "enable_feedback": false,
     "commit_message_model": {
@@ -129,7 +130,7 @@
           "command": "fast-csharpier",
           "arguments": ["{buffer_path}"]
         }
-      },
+      }
     },
     "CSS": {
       "prettier": { "allowed": false },

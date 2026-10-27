@@ -1,9 +1,9 @@
 # ~/.config/worktrunk/config.toml
 # worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
-# worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
 
 [commit.generation]
-command = "opencode2 run --agent build --model opencode-go/deepseek-v4-flash#low"
+command = "opencode2 run --agent build --model opencode-go/mimo-v2.5"
 template-append = """
 - Use conventional commits (feat:, fix:, docs:, …)
 - The title of the commit should be concise and not too much into impl detail
@@ -13,11 +13,15 @@ template-append = """
 [pre-start]
 setup = "{{ repo_path }}/../sync.sh || true"
 
-[projects."prodbgsw@dev.azure.com/prodbgsw/SAT/_git/SAT"]
+[projects."dev.azure.com/prodbgsw/SAT/_git/SAT"]
 post-start.install-fe = "cd ./src/frontend && npm install"
 worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 
-[projects."dev.azure.com/prodbgsw/SAT/_git/SAT"]
-worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+[projects."dev.azure.com/prodbgsw/Fabrik/_git/fabrick-*"]
+pre-start.t3-default = "git config --local \"branch.$(git branch --show-current).gh-merge-base\" dev"
+post-start.install-fe = "npm install"
+
+[projects."dev.azure.com/prodbgsw/Fabrik/_git/fabrick-web-maintenance"]
+post-start.link-fe = "npm run link:shared"
 
 # [projects.""]

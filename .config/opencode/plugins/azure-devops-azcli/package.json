@@ -1,0 +1,6 @@
+{
+  "name": "opencode-azure-devops-azcli",
+  "private": true,
+  "type": "module",
+  "main": "index.ts"
+}

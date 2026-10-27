@@ -7,17 +7,22 @@
     "single": true
   },
   "terminal": {
-    "title": true
+    "title": true,
+    "copy": "select"
   },
   "prompt": {
-    "editor": false
+    "editor": false,
+    "paste": "compact"
   },
   "session": {
     "sidebar": "auto",
     "scrollbar": true,
     "thinking": "hide",
     "new_location": "launch",
-    "grouping": "auto"
+    "grouping": "auto",
+    "markdown": "rendered",
+    "verbosity": "medium",
+    "tps": true
   },
   "animations": true,
   "attention": {
@@ -25,6 +30,14 @@
   },
   "tabs": {
     "enabled": false,
-    "scope": "cwd"
-  }
+    "scope": "cwd",
+    "layout": "vertical",
+    "indicators": "status",
+    "mode": "off"
+  },
+  "debug": {
+    "devtools": false,
+    "turn_tokens": false
+  },
+  "plugins": ["./herdr-opencode"]
 }
